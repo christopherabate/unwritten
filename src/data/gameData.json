@@ -1,0 +1,5 @@
+Tu peux aussi rester en vanilla mais plus propre avec :
+
+    un petit render(state) découpé par sections
+    document.createElement (pas de gros innerHTML)
+    event delegation unique
