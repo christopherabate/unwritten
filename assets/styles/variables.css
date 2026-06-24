@@ -1,0 +1,36 @@
+:root {
+  /* colors */
+  --foreground: #000;
+  --background: #00163d;
+  
+  /* layout */
+  --layout-w: 320;
+  --layout-h: 180;
+  --pixel: max(min(round(down, calc(100vw / var(--layout-w)), 1px), round(down, calc(100dvh / var(--layout-h)), 1px)), 1px);
+  
+  /* effects */
+  --glitch:
+    /* C */ calc(1 * var(--pixel)) 0 0 rgba(0, 255, 255, .2),
+    /* M */ calc(-1 * var(--pixel)) 0 0 rgba(255, 0, 255, .2),
+    /* Y */ 0 0 calc(var(--pixel) / 2) rgba(255, 255, 0, .4),
+    /* W */ 0 0 calc(2 * var(--pixel)) color-mix(in srgb, var(--foreground) 50%, transparent);
+  --glitch_animated:
+    /* C */ calc(var(--pixel) / 2)  0 0 rgba(0, 255, 255, .2),
+    /* M */ calc(var(--pixel) / -2)  0 0 rgba(255, 0, 255, .2),
+    /* Y */ 0 0 calc(var(--pixel) / 2) rgba(255, 255, 0, .2),
+    /* W */ 0 0 calc(1 * var(--pixel)) color-mix(in srgb, var(--foreground) 50%, transparent);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* colors */
+    --foreground: #fff;
+    --background: #00163d;
+  }
+}
+
+[data-theme="dark"] {
+  /* colors */
+  --foreground: #fff;
+  --background: #00163d;
+}
