@@ -62,13 +62,24 @@ body {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  z-index: 1;
+  z-index: 2;
   background:
-    /* vignette */ radial-gradient(ellipse var(--screen-x) var(--screen-y) at center, transparent 75%, #000 100%),
     /* R */ radial-gradient(circle at 15% 100%, rgb(255 0 0 / var(--opacity)) 25%, transparent 75%),
     /* G */ radial-gradient(circle at 50% 0, rgb(0 255 0 / var(--opacity)) 25%, transparent 75%),
     /* B */ radial-gradient(circle at 85% 100%, rgb(0 0 255 / var(--opacity)) 25%, transparent 75%),
-    /* light */ radial-gradient(circle at center, rgb(255 255 255 / calc(2 * var(--opacity))) 50%, transparent 100%);
+    /* light */ radial-gradient(circle at center, rgb(255 255 255 / calc(2 * var(--opacity))) 50%, transparent 100%),
+    /* vignette */ radial-gradient(ellipse var(--screen-x) var(--screen-y) at center, transparent 75%, #000 100%);
+}
+
+.noise:not(.off)::before {
+  --noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 500'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.5' numOctaves='1' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  background:
+    /* noise */ black var(--noise) repeat 0 0 / 500px 500px;
 }
 
 .screen::after {
@@ -77,20 +88,9 @@ body {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  z-index: 2;
+  z-index: 1;
   background: 
     /* scanlines */ linear-gradient(to bottom, rgb(0 0 0 / var(--opacity)) 50%, transparent 50%) repeat 0 0 / 100% calc(2 * var(--pixel));
-}
-
-.noise::before {
-  --noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 500'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.5' numOctaves='1' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 1;
-  background:
-    /* noise */ black var(--noise) repeat 0 0 / 500px 500px;
 }
 
 .glitch {
@@ -111,8 +111,8 @@ body {
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .noise::before { animation: noise .2s steps(3) infinite; }
   .screen:not(.off)::before { animation: turn-on 1s ease-in-out forwards; }
+  .noise:not(.off)::before { animation: noise .2s steps(3) infinite; }
   .screen.off::before { animation: turn-off 1s ease-in-out forwards; }
   .screen::after { animation: scanlines .2s steps(2, end) infinite; }
   .glitch { animation: glitch .1s steps(2, end) infinite; }
@@ -121,8 +121,8 @@ body {
 
 @keyframes noise {
   0% { background-position: 0 0; }
-  50% { background-position: -100px 250px; }
-  100% { background-position: -300px -350px; }
+  50% { background-position: -100px 200px; }
+  100% { background-position: -300px -300px; }
 }
 
 @keyframes turn-on {
