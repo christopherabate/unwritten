@@ -8,13 +8,14 @@ body {
   place-items: center;
   color: var(--foreground);
   background: var(--background);
-  font-family: HelvetiPixel;
+  font-family: HelvetiPixel, sans-serif;
+  font-size: calc(10 * var(--pixel));
   image-rendering: pixelated;
-  filter: drop-shadow(0 0 calc(20 * var(--pixel)) #000);
+  filter: drop-shadow(0 0 calc(24 * var(--pixel)) #000);
 }
 
 .screen {
-  --screen-r: calc(20 * var(--pixel));
+  --screen-r: calc(24 * var(--pixel));
   --screen-v: calc(var(--screen-r)*(1 - sqrt(2)/4));
   --screen-p: calc(var(--screen-v) - var(--screen-r)/2);
   clip-path: inset(0 round var(--screen-r));
@@ -34,6 +35,7 @@ body {
     curve to var(--screen-v) var(--screen-p) with calc(2*var(--screen-p)) calc(2*var(--screen-p))
   );
   position: relative;
+  overflow: auto;
   height: calc(var(--layout-h) * var(--pixel));
   width: calc(var(--layout-w) * var(--pixel));
   padding: calc(10 * var(--pixel));
@@ -59,7 +61,7 @@ body {
 .screen::before {
   --opacity: .05;
   content: "";
-  position: absolute;
+  position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 2;
@@ -74,7 +76,7 @@ body {
 .noise:not(.off)::before {
   --noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 500'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.5' numOctaves='1' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   content: "";
-  position: absolute;
+  position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 2;
@@ -85,7 +87,7 @@ body {
 .screen::after {
   --opacity: .05;
   content: "";
-  position: absolute;
+  position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 1;
@@ -102,12 +104,84 @@ body {
 }
 
 .title {
-  font-size: clamp(4rem, 20vmin, 12rem);
+  font-size: calc(50 * var(--pixel));
   text-align:center;
 }
 
 .caret::after {
   content: "_";
+}
+
+:focus-visible {
+  outline-offset: calc(1 * var(--pixel));
+  outline-width: var(--pixel);
+}
+
+fieldset {
+  border-width: var(--pixel);
+  border-style: solid;
+  padding: calc(2 * var(--pixel)) calc(8 * var(--pixel)) calc(6 * var(--pixel)) calc(8 * var(--pixel));
+  background-color: color-mix(in srgb, var(--background) 50%, transparent);
+}
+
+legend {
+  font-family: NESPixel;
+  padding: calc(4 * var(--pixel)) calc(4 * var(--pixel)) 0 calc(4 * var(--pixel));
+  margin: 0 calc(-4 * var(--pixel)) ;
+}
+
+input:not([type="checkbox"], [type="radio"]) {
+  color: var(--foreground);
+  background-color: transparent;
+  padding: 0 calc(2 * var(--pixel));
+  border: none;
+  box-shadow: var(--border);
+}
+
+input[type="radio"] {
+  appearance: none;
+  position: relative;
+  width: calc(5 * var(--pixel));
+  height: calc(5 * var(--pixel));
+}
+
+label:has([type="radio"]:not(:disabled)) {
+  cursor: pointer;
+  margin: 0 1rem 0 calc(-1 * var(--pixel));
+}
+
+input[type="radio"]:checked:before {
+  color: var(--foreground);
+  background-color: var(--background);
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: calc(1 * var(--pixel));
+  height: calc(1 * var(--pixel));
+  box-shadow: var(--arrow-right);
+}
+
+button {
+  font-family: NESPixel;
+  position: relative;
+  border: 0;
+  padding: 0 calc(4 * var(--pixel));
+  margin: calc(1 * var(--pixel)) calc(1 * var(--pixel));
+  user-select: none;
+  cursor: pointer;
+  text-shadow: inherit, 3px 3px;
+}
+
+button::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  box-shadow: var(--border);
+}
+
+button:disabled {
+  pointer-events: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -116,7 +190,8 @@ body {
   .screen.off::before { animation: turn-off 1s ease-in-out forwards; }
   .screen::after { animation: scanlines .2s steps(2, end) infinite; }
   .glitch { animation: glitch .1s steps(2, end) infinite; }
-  .caret::after { animation: caret 1s steps(1, end) infinite; }
+  .caret::after { animation: blink 1s steps(1, end) infinite; }
+  input[type="radio"]:focus { animation: blink 1s steps(1, end) infinite; }
 }
 
 @keyframes noise {
@@ -149,6 +224,6 @@ body {
   100% { text-shadow: var(--glitch_animated); }
 }
 
-@keyframes caret {
+@keyframes blink {
   50% { opacity: 0; }
 }
