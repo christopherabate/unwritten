@@ -1,5 +1,5 @@
 fieldset {
-  border: var(--pixel) solid var(--foreground);
+  border: var(--pixel) solid var(--primary);
   padding: calc(2 * var(--pixel)) calc(8 * var(--pixel)) calc(6 * var(--pixel)) calc(8 * var(--pixel));
   background-color: color-mix(in srgb, var(--background) 75%, transparent);
 }
@@ -11,8 +11,7 @@ legend {
 }
 
 input:not([type="checkbox"], [type="radio"]) {
-  color: var(--foreground);
-  background-color: transparent;
+  background-color: var(--background);
   padding: 0 calc(2 * var(--pixel));
   border: none;
   box-shadow: var(--border);
@@ -31,8 +30,6 @@ label:has([type="radio"]:not(:disabled)) {
 }
 
 input[type="radio"]:checked:before {
-  color: var(--foreground);
-  background-color: var(--background);
   content: "";
   position: absolute;
   inset: 0;

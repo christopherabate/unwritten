@@ -1,7 +1,8 @@
 :root {
   /* colors */
   color-scheme: dark;
-  --foreground: #fff;
+  --primary: #fff;
+  --accent: #d0701c;
   --background: #00163d;
   
   /* layout */
