@@ -1,0 +1,33 @@
+@keyframes aberration {
+  0%, 69%, 71%, 89%, 97%, 100% { filter: none; }
+  70%, 90%, 98% { filter: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='aberration'%3E%3CfeColorMatrix type='matrix' in='SourceGraphic' result='red_' values='1 0 0 0 0 0 0 0 0 0 0 0 .5 0 0 0 0 0 1 0'/%3E%3CfeColorMatrix type='matrix' in='SourceGraphic' result='blue_' values='0 0 0 0 0 0 1 0 0 0 0 0 .5 0 0 0 0 0 1 0'/%3E%3CfeOffset in='red_' dx='2' dy='0' result='red'/%3E%3CfeOffset in='blue_' dx='-2' dy='0' result='blue'/%3E%3CfeBlend mode='screen' in='red' in2='blue'/%3E%3C/filter%3E%3C/svg%3E#aberration"); }
+}
+
+@keyframes turn-on {
+  0% { --off-x: 0; --off-y: 0; }
+  50% { --off-x: .5vmax; --off-y: .5vmax; }
+  75% { --off-x: 100vmax; --off-y: 1vmax; }
+  100% { --off-x: 100vmax; --off-y: 100vmax; }
+}
+
+@keyframes turn-off {
+  0% { --off-x: 100vmax; --off-y: 100vmax; }
+  25% { --off-x: 100vmax; --off-y: .1vmax; }
+  50% { --off-x: 1vmax; --off-y: 1vmax; }
+  100% { --off-x: 0; --off-y: 0; }
+}
+
+@keyframes stand-by {
+  0% { background-position: 0 0; }
+  50% { background-position: -100px 200px; }
+  100% { background-position: -300px -300px; }
+}
+
+@keyframes scanlines {
+  0% { background-position: 0 -1px; }
+  100% { background-position: 0 1px; }
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}

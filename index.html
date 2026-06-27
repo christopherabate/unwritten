@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark">
+    <link rel="stylesheet" href="./assets/styles/styles.css" />
+    <title>unwritten_</title>
+  </head>
+  <body class="aberration">
+    <main id="title" class="turn-on">
+      <h1>unwritten</h1>
+      <button onclick="this.closest('main').classList.remove('turn-on', 'turn-off'); this.closest('main').classList.add('turn-on')">turn-on</button>
+      <button onclick="this.closest('main').classList.remove('turn-on', 'turn-off'); this.closest('main').classList.add('turn-off')">turn-off</button>
+      <button onclick="this.closest('main').classList.remove('turn-on', 'turn-off'); this.closest('main').classList.toggle('stand-by')">stand-by</button>
+      <button disabled>disabled</button>
+      <button onclick="document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen()">⛶</button>
+      <form>
+        <fieldset>
+          <legend>Legend</legend>
+          <div>
+            <label for="input">Example input</label>
+            <input type="text" id="input" placeholder="Example input">
+          </div>
+          <div>
+            <label>
+              <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
+              One
+            </label>
+            <label>
+              <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+              Two
+            </label>
+            <label>
+              <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3" disabled="">
+              Three
+            </label>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Legend</legend>
+          <div>
+            <label for="input">Example input</label>
+            <input type="text" id="input" placeholder="Example input">
+          </div>
+        </fieldset>
+      </form>
+    </main>
+    
+    <svg xmlns="http://www.w3.org/2000/svg" style="position:absolute" width="0" height="0">
+      <defs>
+        <filter id="aberration">
+          <feColorMatrix type="matrix" in="SourceGraphic" result="red_" values="
+            1 0 0 0 0
+            0 0 0 0 0 
+            0 0 .5 0 0 
+            0 0 0 1 0" />
+          <feColorMatrix type="matrix" in="SourceGraphic" result="blue_" values="
+            0 0 0 0 0
+            0 1 0 0 0 
+            0 0 .5 0 0 
+            0 0 0 1 0" />
+          <feOffset in="red_" dx="2" dy="0" result="red" />
+          <feOffset in="blue_" dx="-2" dy="0" result="blue" />
+          <feBlend mode="screen" in="red" in2="blue" />
+        </filter>
+      </defs>
+    </svg>
+  </body>
+</html>

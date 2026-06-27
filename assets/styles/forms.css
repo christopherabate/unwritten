@@ -1,0 +1,69 @@
+fieldset {
+  border: var(--pixel) solid var(--foreground);
+  padding: calc(2 * var(--pixel)) calc(8 * var(--pixel)) calc(6 * var(--pixel)) calc(8 * var(--pixel));
+  background-color: color-mix(in srgb, var(--background) 75%, transparent);
+}
+
+legend {
+  font-family: NESPixel;
+  padding: calc(4 * var(--pixel)) calc(4 * var(--pixel)) 0 calc(4 * var(--pixel));
+  margin: 0 calc(-4 * var(--pixel)) ;
+}
+
+input:not([type="checkbox"], [type="radio"]) {
+  color: var(--foreground);
+  background-color: transparent;
+  padding: 0 calc(2 * var(--pixel));
+  border: none;
+  box-shadow: var(--border);
+}
+
+input[type="radio"] {
+  appearance: none;
+  position: relative;
+  width: calc(5 * var(--pixel));
+  height: calc(5 * var(--pixel));
+}
+
+label:has([type="radio"]:not(:disabled)) {
+  cursor: pointer;
+  margin: 0 1rem 0 calc(-1 * var(--pixel));
+}
+
+input[type="radio"]:checked:before {
+  color: var(--foreground);
+  background-color: var(--background);
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: var(--pixel);
+  height: var(--pixel);
+  box-shadow: var(--arrow-right);
+}
+
+button {
+  font-family: NESPixel;
+  position: relative;
+  border: 0;
+  padding: 0 calc(4 * var(--pixel));
+  margin: var(--pixel) var(--pixel);
+  user-select: none;
+  cursor: pointer;
+  text-shadow: inherit;
+}
+
+button::after {
+  content: "";
+  position: absolute;
+  z-index:0;
+  inset: 0;
+  box-shadow: var(--border);
+}
+
+button:disabled {
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  input[type="radio"]:focus { animation: blink .8s steps(1, end) infinite; }
+}
