@@ -1,7 +1,7 @@
 fieldset {
   border: var(--pixel) solid var(--primary);
   padding: calc(2 * var(--pixel)) calc(8 * var(--pixel)) calc(6 * var(--pixel)) calc(8 * var(--pixel));
-  background-color: color-mix(in srgb, var(--background) 75%, transparent);
+  /*background-color: color-mix(in srgb, var(--background) 75%, transparent);*/
 }
 
 legend {
