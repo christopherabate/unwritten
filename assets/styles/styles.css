@@ -12,8 +12,7 @@ body {
   font-size: calc(10 * var(--pixel));
   image-rendering: pixelated;
   color: var(--primary);
-  background: var(--background);
-  filter: drop-shadow(0 0 calc(25 * var(--pixel)) #000);
+  background: #000;
   text-shadow: 0 0 calc(5 * var(--pixel)) color-mix(in srgb, var(--primary) 25%, transparent);
 }
 
