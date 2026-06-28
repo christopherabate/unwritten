@@ -89,7 +89,7 @@ section::after {
     /* r */ radial-gradient(circle at 15% 100%, rgb(255 0 0 / .05) 25%, transparent 75%),
     /* g */ radial-gradient(circle at 50% 0, rgb(0 255 0 / .05) 25%, transparent 75%),
     /* b */ radial-gradient(circle at 85% 100%, rgb(0 0 255 / .05) 25%, transparent 75%),
-    /* light */ radial-gradient(circle at center, rgb(255 255 255 / .1) 50%, transparent 100%),
+    /* light */ radial-gradient(circle at center, rgb(255 255 255 / .05) 50%, transparent 100%),
     /* shutter */ radial-gradient(ellipse var(--shutter-x) var(--shutter-y) at center, transparent 75%, #000 100%);
 }
 
