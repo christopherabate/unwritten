@@ -1,0 +1,131 @@
+@import "reset.css";
+@import "typography.css";
+@import "variables.css";
+@import "forms.css";
+@import "animations.css";
+
+body {
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  font-family: HelvetiPixel, sans-serif;
+  font-size: calc(10 * var(--pixel));
+  image-rendering: pixelated;
+  color: var(--primary);
+  background: var(--background);
+  filter: drop-shadow(0 0 calc(25 * var(--pixel)) #000);
+  text-shadow: 0 0 calc(5 * var(--pixel)) color-mix(in srgb, var(--primary) 25%, transparent);
+}
+
+main {
+  --screen-r: 10vmin;
+  --screen-v: calc(var(--screen-r)*(1 - sqrt(2)/4));
+  --screen-p: calc(var(--screen-v) - var(--screen-r)/2);
+  clip-path: inset(0 round var(--screen-r));
+  clip-path: shape(
+    from var(--screen-v) var(--screen-p),
+    curve to 50% 0 with var(--screen-r) 0,
+    curve to calc(100% - var(--screen-v)) var(--screen-p) with calc(100% - var(--screen-r)) 0,
+    curve to calc(100% - var(--screen-p)) var(--screen-v) with calc(100% - 2*var(--screen-p)) calc(2*var(--screen-p)),
+    curve to 100% 50% with 100% var(--screen-r),
+    curve to calc(100% - var(--screen-p)) calc(100% - var(--screen-v)) with 100% calc(100% - var(--screen-r)),
+    curve to calc(100% - var(--screen-v)) calc(100% - var(--screen-p)) with calc(100% - 2*var(--screen-p)) calc(100% - 2*var(--screen-p)),
+    curve to 50% 100% with calc(100% - var(--screen-r)) 100%,
+    curve to var(--screen-v) calc(100% - var(--screen-p)) with var(--screen-r) 100%,
+    curve to var(--screen-p) calc(100% - var(--screen-v)) with calc(2*var(--screen-p)) calc(100% - 2*var(--screen-p)),
+    curve to 0 50% with 0 calc(100% - var(--screen-r)),
+    curve to var(--screen-p) var(--screen-v) with 0 var(--screen-r),
+    curve to var(--screen-v) var(--screen-p) with calc(2*var(--screen-p)) calc(2*var(--screen-p))
+  );
+}
+
+section {
+  height: calc(var(--layout-h) * var(--pixel));
+  width: calc(var(--layout-w) * var(--pixel));
+  position: relative;
+  overflow: auto;
+  padding: 5vmin;
+}
+
+@property --shutter-x {
+  syntax: "<length-percentage>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --shutter-y {
+  syntax: "<length-percentage>";
+  inherits: false;
+  initial-value: 0;
+}
+
+section::before,
+section::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+section::after,
+section.turn-on::after {
+  --shutter-x: 100vmax;
+  --shutter-y: 100vmax;
+}
+
+section.turn-off::after {
+  --shutter-x: 0;
+  --shutter-y: 0;
+}
+
+section::before {
+  background: 
+    /* scanlines */ linear-gradient(color-mix(in srgb, var(--primary) 10%, transparent) 1px, color-mix(in srgb, var(--background) 10%, transparent) 1px) 0 0 / 100% 2px,
+    /* pixels */ linear-gradient(90deg, rgba(255, 0, 0, .05), rgba(0, 255, 0, .05), rgba(0, 0, 255, .05)) 0 0 / 2px 100%;
+}
+
+section::after {
+  background:
+    /* r */ radial-gradient(circle at 15% 100%, rgb(255 0 0 / .05) 25%, transparent 75%),
+    /* g */ radial-gradient(circle at 50% 0, rgb(0 255 0 / .05) 25%, transparent 75%),
+    /* b */ radial-gradient(circle at 85% 100%, rgb(0 0 255 / .05) 25%, transparent 75%),
+    /* light */ radial-gradient(circle at center, rgb(255 255 255 / .1) 50%, transparent 100%),
+    /* shutter */ radial-gradient(ellipse var(--shutter-x) var(--shutter-y) at center, transparent 75%, #000 100%);
+}
+
+section.stand-by::after {
+  background:
+    /* noise */ black url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 500'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.5' numOctaves='1' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E") repeat 0 0 / 500px 500px;
+}
+
+section#title {
+  background:
+    url(../images/library.png ) no-repeat center / cover,
+    var(--background);
+}
+
+section#title h1 {
+  text-align: center;
+  font-size: 5em;
+}
+
+section#title h1::after {
+  content: "_";
+}
+
+:focus-visible {
+  outline-color: var(--primary);
+  color: var(--accent);
+  outline-offset: var(--pixel);
+  outline-width: var(--pixel);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  section::before { animation: scanlines .2s steps(2, end) infinite; }
+  section.turn-on:not(.stand-by)::after { animation: turn-on 1s ease-in-out forwards; }
+  section.turn-off::after { animation: turn-off 1s ease-in-out forwards; }
+  section.stand-by::after { animation: stand-by .2s steps(3) infinite; }
+  section#title h1::after { animation: blink 1s steps(1, end) infinite; }
+  section.aberration:not(.turn-off) { animation: aberration 2s infinite; }
+}
