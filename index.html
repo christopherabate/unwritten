@@ -7,14 +7,15 @@
     <title>unwritten_</title>
   </head>
   <body>
-    <main>
-      <section id="title" class="aberration turn-on">
+    <main class="aberration">
+      <section id="shelves" class="turn-on">
         <h1>unwritten</h1>
         <button type="button" onclick="this.closest('section').classList.remove('turn-on', 'turn-off'); this.closest('section').classList.add('turn-on')">turn-on</button>
         <button type="button" onclick="this.closest('section').classList.remove('turn-on', 'turn-off'); this.closest('section').classList.add('turn-off')">turn-off</button>
         <button type="button" onclick="this.closest('section').classList.remove('turn-on', 'turn-off'); this.closest('section').classList.toggle('stand-by')">stand-by</button>
         <button type="button" disabled>disabled</button>
         <button type="button" onclick="document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen()">⛶</button>
+        <button type="button" onclick="this.closest('section').classList.toggle('selected')">select</button>
         <form>
           <fieldset>
             <legend>Legend</legend>
