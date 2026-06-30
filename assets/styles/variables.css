@@ -1,0 +1,42 @@
+:root {
+  /* text */
+  --text:      #f4f5e4;
+  --muted:     #A6ABC2;
+
+  /* layers */
+  --lightest:  #E4B782;
+  --lighter:   #E78A66;
+  --light:     #B45A63;
+  --midlight:  #7A4E5A;
+  --middark:   #443049;
+  --dark:      #2F243A;
+  --darker:    #171A2F;
+  --darkest:   #121626;
+
+  /* accents */
+  --primary:   #fac833;
+  --secondary: #49f6e8;
+  --tertiary:  #d275fa;
+
+  /* status */
+  --success:   #3ac66b;
+  --warning:   #f08f4a;
+  --danger:    #D04F4F;
+  --info:      #5ea1ff;
+  --focus:     #ff9900;
+  --disabled:  color-mix(in srgb, var(--muted) 25%, transparent);
+
+  /* layout */
+  --layout-w: 320;
+  --layout-h: 180;
+  --pixel: max(min(round(down, calc(100vw / var(--layout-w)), 1px), round(down, calc(100dvh / var(--layout-h)), 1px)), 1px);
+  
+  /* box-shadow effects */
+  --box:
+    0 calc(-1 * var(--pixel)) 0 currentColor,
+    calc(1 * var(--pixel)) 0 0 currentColor,
+    0 calc(1 * var(--pixel)) 0 currentColor,
+    calc(-1 * var(--pixel)) 0 0 currentColor,
+    inset 0 calc(-1 * var(--pixel)) color-mix(in srgb, currentColor 30%, transparent),
+    inset 0 calc(1 * var(--pixel)) color-mix(in srgb, currentColor 15%, transparent);
+}
