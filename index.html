@@ -6,16 +6,18 @@
     <link rel="stylesheet" href="./assets/styles/styles.css">
     <title>unwritten_</title>
   </head>
-  <body>
-    <main class="aberration">
-      <section id="shelves" class="turn-on">
+  <body class="aberration">
+    <main class="screen">
+      <div id="title" class="shutter turn-on shader">
         <h1>unwritten</h1>
-        <button type="button" onclick="this.closest('section').classList.remove('turn-on', 'turn-off'); this.closest('section').classList.add('turn-on')">turn-on</button>
-        <button type="button" onclick="this.closest('section').classList.remove('turn-on', 'turn-off'); this.closest('section').classList.add('turn-off')">turn-off</button>
-        <button type="button" onclick="this.closest('section').classList.remove('turn-on', 'turn-off'); this.closest('section').classList.toggle('stand-by')">stand-by</button>
+        <button type="button" onclick="this.parentElement.classList.remove('turn-on', 'turn-off'); this.parentElement.classList.add('turn-on')" class="primary">turn-on</button>
+        <button type="button" onclick="this.parentElement.classList.remove('turn-on', 'turn-off'); this.parentElement.classList.add('turn-off')" class="secondary">turn-off</button>
+        <button type="button" onclick="this.parentElement.classList.remove('turn-on', 'turn-off'); this.parentElement.classList.toggle('stand-by')" class="tertiary">stand-by</button>
         <button type="button" disabled>disabled</button>
-        <button type="button" onclick="document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen()">⛶</button>
-        <button type="button" onclick="this.closest('section').classList.toggle('selected')">select</button>
+        <button type="button" onclick="document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen()" class="success">⛶</button>
+        <button type="button" onclick="this.parentElement.classList.toggle('selected')" class="warning">select</button>
+        <button type="button" onclick="this.parentElement.classList.toggle('shader')" class="danger">shader</button>
+        <button type="button" onclick="this.closest('body ').classList.toggle('aberration')" class="info">aberration</button>
         <form>
           <fieldset>
             <legend>Legend</legend>
@@ -46,7 +48,7 @@
             </div>
           </fieldset>
         </form>
-      </section>
+      </div>
     </main>
   </body>
 </html>
