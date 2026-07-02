@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./assets/styles/styles.css">
+    <title>unwritten_</title>
+  </head>
+  <body class="aberration">
+    <main class="screen">
+      <div id="title" class="shutter turn-on shader">
+        <h1>unwritten</h1>
+        <button type="button" onclick="this.parentElement.classList.remove('turn-on', 'turn-off'); this.parentElement.classList.add('turn-on')" class="primary"><span aria-hidden="true" class="icon music"></span> turn-on</button>
+        <button type="button" onclick="this.parentElement.classList.remove('turn-on', 'turn-off'); this.parentElement.classList.add('turn-off')" class="secondary">turn-off</button>
+        <button type="button" onclick="this.parentElement.classList.remove('turn-on', 'turn-off'); this.parentElement.classList.toggle('stand-by')" class="tertiary"><span aria-hidden="true" class="icon pause"></span> stand-by</button>
+        <button type="button" disabled>disabled</button>
+        <button type="button" onclick="document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen()" class="success"><span aria-label="fullscreen" class="icon maximize"></span></button>
+        <button type="button" onclick="this.parentElement.classList.toggle('selected')" class="warning">select</button>
+        <button type="button" onclick="this.parentElement.classList.toggle('shader')" class="danger">shader</button>
+        <button type="button" onclick="this.closest('body ').classList.toggle('aberration')" class="info">aberration</button>
+        <button type="button" class="light">light</button>
+        <button type="button" class="dark">dark</button>
+        <form>
+          <fieldset>
+            <legend>Legend</legend>
+            <div>
+              <label for="input">Example input</label>
+              <input type="text" id="input" placeholder="Example input">
+            </div>
+            <div>
+              <label>
+                <input class="maximize" type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
+                One
+              </label>
+              <label>
+                <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+                Two
+              </label>
+              <label>
+                <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3" disabled="">
+                Three
+              </label>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend>Are you okay?</legend>
+            <div>
+              <label>
+                <input class="tick" type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
+                Yes
+              </label>
+              <label>
+                <input class="cross" type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+                No
+              </label>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,204 @@
+:root {
+  --arrow-up:
+    calc(3 * var(--pixel)) calc(2 * var(--pixel)),
+    calc(2 * var(--pixel)) calc(3 * var(--pixel)),
+    calc(3 * var(--pixel)) calc(3 * var(--pixel)),
+    calc(4 * var(--pixel)) calc(3 * var(--pixel)),
+    calc(1 * var(--pixel)) calc(4 * var(--pixel)),
+    calc(2 * var(--pixel)) calc(4 * var(--pixel)),
+    calc(3 * var(--pixel)) calc(4 * var(--pixel)),
+    calc(4 * var(--pixel)) calc(4 * var(--pixel)),
+    calc(5 * var(--pixel)) calc(4 * var(--pixel));
+  --arrow-right:
+    calc(2 * var(--pixel)) calc(1 * var(--pixel)),
+    calc(2 * var(--pixel)) calc(2 * var(--pixel)),
+    calc(3 * var(--pixel)) calc(2 * var(--pixel)),
+    calc(2 * var(--pixel)) calc(3 * var(--pixel)),
+    calc(3 * var(--pixel)) calc(3 * var(--pixel)),
+    calc(4 * var(--pixel)) calc(3 * var(--pixel)),
+    calc(2 * var(--pixel)) calc(4 * var(--pixel)),
+    calc(3 * var(--pixel)) calc(4 * var(--pixel)),
+    calc(2 * var(--pixel)) calc(5 * var(--pixel));
+  --arrow-down:
+    calc(1 * var(--pixel)) calc(2 * var(--pixel)),
+    calc(2 * var(--pixel)) calc(2 * var(--pixel)),
+    calc(3 * var(--pixel)) calc(2 * var(--pixel)),
+    calc(4 * var(--pixel)) calc(2 * var(--pixel)),
+    calc(5 * var(--pixel)) calc(2 * var(--pixel)),
+    calc(2 * var(--pixel)) calc(3 * var(--pixel)),
+    calc(3 * var(--pixel)) calc(3 * var(--pixel)),
+    calc(4 * var(--pixel)) calc(3 * var(--pixel)),
+    calc(3 * var(--pixel)) calc(4 * var(--pixel));
+  --arrow-left:
+    calc(4 * var(--pixel)) calc(1 * var(--pixel)),
+    calc(3 * var(--pixel)) calc(2 * var(--pixel)),
+    calc(4 * var(--pixel)) calc(2 * var(--pixel)),
+    calc(3 * var(--pixel)) calc(3 * var(--pixel)),
+    calc(4 * var(--pixel)) calc(3 * var(--pixel)),
+    calc(2 * var(--pixel)) calc(3 * var(--pixel)),
+    calc(3 * var(--pixel)) calc(4 * var(--pixel)),
+    calc(4 * var(--pixel)) calc(4 * var(--pixel)),
+    calc(4 * var(--pixel)) calc(5 * var(--pixel));
+  --square:
+    calc(2 * var(--pixel)) calc(2 * var(--pixel)),
+    calc(3 * var(--pixel)) calc(2 * var(--pixel)),
+    calc(4 * var(--pixel)) calc(2 * var(--pixel)),
+    calc(2 * var(--pixel)) calc(3 * var(--pixel)),
+    calc(3 * var(--pixel)) calc(3 * var(--pixel)),
+    calc(4 * var(--pixel)) calc(3 * var(--pixel)),
+    calc(2 * var(--pixel)) calc(4 * var(--pixel)),
+    calc(3 * var(--pixel)) calc(4 * var(--pixel)),
+    calc(4 * var(--pixel)) calc(4 * var(--pixel));
+  --dot:
+    calc(3 * var(--pixel)) calc(2 * var(--pixel)),
+    calc(2 * var(--pixel)) calc(3 * var(--pixel)),
+    calc(4 * var(--pixel)) calc(3 * var(--pixel)),
+    calc(3 * var(--pixel)) calc(4 * var(--pixel));
+  --cirlcle:
+    calc(2 * var(--pixel)) calc(1 * var(--pixel)),
+    calc(3 * var(--pixel)) calc(1 * var(--pixel)),
+    calc(4 * var(--pixel)) calc(1 * var(--pixel)),
+    calc(1 * var(--pixel)) calc(2 * var(--pixel)),
+    calc(5 * var(--pixel)) calc(2 * var(--pixel)),
+    calc(1 * var(--pixel)) calc(3 * var(--pixel)),
+    calc(5 * var(--pixel)) calc(3 * var(--pixel)),
+    calc(1 * var(--pixel)) calc(4 * var(--pixel)),
+    calc(5 * var(--pixel)) calc(4 * var(--pixel)),
+    calc(2 * var(--pixel)) calc(5 * var(--pixel)),
+    calc(3 * var(--pixel)) calc(5 * var(--pixel)),
+    calc(4 * var(--pixel)) calc(5 * var(--pixel));
+  --disc:
+    calc(2 * var(--pixel)) calc(1 * var(--pixel)),
+    calc(3 * var(--pixel)) calc(1 * var(--pixel)),
+    calc(4 * var(--pixel)) calc(1 * var(--pixel)),
+    calc(1 * var(--pixel)) calc(2 * var(--pixel)),
+    calc(2 * var(--pixel)) calc(2 * var(--pixel)),
+    calc(3 * var(--pixel)) calc(2 * var(--pixel)),
+    calc(4 * var(--pixel)) calc(2 * var(--pixel)),
+    calc(5 * var(--pixel)) calc(2 * var(--pixel)),
+    calc(1 * var(--pixel)) calc(3 * var(--pixel)),
+    calc(2 * var(--pixel)) calc(3 * var(--pixel)),
+    calc(3 * var(--pixel)) calc(3 * var(--pixel)),
+    calc(4 * var(--pixel)) calc(3 * var(--pixel)),
+    calc(5 * var(--pixel)) calc(3 * var(--pixel)),
+    calc(1 * var(--pixel)) calc(4 * var(--pixel)),
+    calc(2 * var(--pixel)) calc(4 * var(--pixel)),
+    calc(3 * var(--pixel)) calc(4 * var(--pixel)),
+    calc(4 * var(--pixel)) calc(4 * var(--pixel)),
+    calc(5 * var(--pixel)) calc(4 * var(--pixel)),
+    calc(2 * var(--pixel)) calc(5 * var(--pixel)),
+    calc(3 * var(--pixel)) calc(5 * var(--pixel)),
+    calc(4 * var(--pixel)) calc(5 * var(--pixel));
+  --maximize:
+    calc(1 * var(--pixel)) calc(1 * var(--pixel)),
+    calc(2 * var(--pixel)) calc(1 * var(--pixel)),
+    calc(4 * var(--pixel)) calc(1 * var(--pixel)),
+    calc(5 * var(--pixel)) calc(1 * var(--pixel)),
+    calc(1 * var(--pixel)) calc(2 * var(--pixel)),
+    calc(5 * var(--pixel)) calc(2 * var(--pixel)),
+    calc(1 * var(--pixel)) calc(4 * var(--pixel)),
+    calc(5 * var(--pixel)) calc(4 * var(--pixel)),
+    calc(1 * var(--pixel)) calc(5 * var(--pixel)),
+    calc(2 * var(--pixel)) calc(5 * var(--pixel)),
+    calc(4 * var(--pixel)) calc(5 * var(--pixel)),
+    calc(5 * var(--pixel)) calc(5 * var(--pixel));
+  --music:
+    calc(3 * var(--pixel)) calc(1 * var(--pixel)),
+    calc(4 * var(--pixel)) calc(1 * var(--pixel)),
+    calc(5 * var(--pixel)) calc(1 * var(--pixel)),
+    calc(2 * var(--pixel)) calc(2 * var(--pixel)),
+    calc(5 * var(--pixel)) calc(2 * var(--pixel)),
+    calc(2 * var(--pixel)) calc(3 * var(--pixel)),
+    calc(5 * var(--pixel)) calc(3 * var(--pixel)),
+    calc(1 * var(--pixel)) calc(4 * var(--pixel)),
+    calc(2 * var(--pixel)) calc(4 * var(--pixel)),
+    calc(4 * var(--pixel)) calc(4 * var(--pixel)),
+    calc(5 * var(--pixel)) calc(4 * var(--pixel)),
+    calc(1 * var(--pixel)) calc(5 * var(--pixel)),
+    calc(2 * var(--pixel)) calc(5 * var(--pixel)),
+    calc(4 * var(--pixel)) calc(5 * var(--pixel)),
+    calc(5 * var(--pixel)) calc(5 * var(--pixel));
+  --pause:
+    calc(1 * var(--pixel)) calc(1 * var(--pixel)),
+    calc(2 * var(--pixel)) calc(1 * var(--pixel)),
+    calc(4 * var(--pixel)) calc(1 * var(--pixel)),
+    calc(5 * var(--pixel)) calc(1 * var(--pixel)),
+    calc(1 * var(--pixel)) calc(2 * var(--pixel)),
+    calc(2 * var(--pixel)) calc(2 * var(--pixel)),
+    calc(4 * var(--pixel)) calc(2 * var(--pixel)),
+    calc(5 * var(--pixel)) calc(2 * var(--pixel)),
+    calc(1 * var(--pixel)) calc(3 * var(--pixel)),
+    calc(2 * var(--pixel)) calc(3 * var(--pixel)),
+    calc(4 * var(--pixel)) calc(3 * var(--pixel)),
+    calc(5 * var(--pixel)) calc(3 * var(--pixel)),
+    calc(1 * var(--pixel)) calc(4 * var(--pixel)),
+    calc(2 * var(--pixel)) calc(4 * var(--pixel)),
+    calc(4 * var(--pixel)) calc(4 * var(--pixel)),
+    calc(5 * var(--pixel)) calc(4 * var(--pixel)),
+    calc(1 * var(--pixel)) calc(5 * var(--pixel)),
+    calc(2 * var(--pixel)) calc(5 * var(--pixel)),
+    calc(4 * var(--pixel)) calc(5 * var(--pixel)),
+    calc(5 * var(--pixel)) calc(5 * var(--pixel));
+  --tick:
+    calc(5 * var(--pixel)) calc(1 * var(--pixel)),
+    calc(4 * var(--pixel)) calc(2 * var(--pixel)),
+    calc(5 * var(--pixel)) calc(2 * var(--pixel)),
+    calc(1 * var(--pixel)) calc(3 * var(--pixel)),
+    calc(3 * var(--pixel)) calc(3 * var(--pixel)),
+    calc(4 * var(--pixel)) calc(3 * var(--pixel)),
+    calc(1 * var(--pixel)) calc(4 * var(--pixel)),
+    calc(2 * var(--pixel)) calc(4 * var(--pixel)),
+    calc(3 * var(--pixel)) calc(4 * var(--pixel)),
+    calc(2 * var(--pixel)) calc(5 * var(--pixel));
+  --cross:
+    calc(1 * var(--pixel)) calc(1 * var(--pixel)),
+    calc(5 * var(--pixel)) calc(1 * var(--pixel)),
+    calc(2 * var(--pixel)) calc(2 * var(--pixel)),
+    calc(4 * var(--pixel)) calc(2 * var(--pixel)),
+    calc(3 * var(--pixel)) calc(3 * var(--pixel)),
+    calc(2 * var(--pixel)) calc(4 * var(--pixel)),
+    calc(4 * var(--pixel)) calc(4 * var(--pixel)),
+    calc(1 * var(--pixel)) calc(5 * var(--pixel)),
+    calc(5 * var(--pixel)) calc(5 * var(--pixel));
+}
+
+.arrow-up::before { --icon: var(--arrow-up); }
+.arrow-right::before { --icon: var(--arrow-right); }
+.arrow-down::before { --icon: var(--arrow-down); }
+.arrow-left::before { --icon: var(--arrow-left); }
+.square::before { --icon: var(--square); }
+.dot::before { --icon: var(--dot); }
+.circle::before { --icon: var(--circle); }
+.disc::before { --icon: var(--disc); }
+.maximize::before { --icon: var(--maximize); }
+.music::before { --icon: var(--music); }
+.pause::before { --icon: var(--pause); }
+.tick::before { --icon: var(--tick); }
+.cross::before { --icon: var(--cross); }
+
+.icon {
+  --color: currentColor;
+  color: var(--color);
+  display: inline-block;
+  min-width: calc(5 * var(--pixel));
+  text-align: left;
+  margin: calc(0 * var(--pixel));
+}
+
+.icon::before {
+  display: inline-block;
+  content: "";
+  pointer-events: none;
+  vertical-align: calc((5 * var(--pixel)));
+  width: var(--pixel);
+  height: var(--pixel);
+  margin-left: calc(-1 * var(--pixel));
+  box-shadow: var(--icon);
+}
+
+.icon.interactive { display: none; }
+:has(> .icon.interactive):is(:hover, :focus-visible, :active) > .icon.interactive { display: inline-block; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .icon.interactive { animation: blink .8s steps(1, end) infinite; }
+}
