@@ -118,6 +118,7 @@ body {
 #title h1 {
   font-size: 5em;
   text-shadow:
+    inherit,
     calc(-1 * var(--pixel)) calc(-1 * var(--pixel)) 0,
     calc(1 * var(--pixel)) calc(-1 * var(--pixel)) 0,
     calc(-1 * var(--pixel)) calc(1 * var(--pixel)) 0,
