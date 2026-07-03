@@ -102,6 +102,19 @@
     calc(2 * var(--pixel)) calc(5 * var(--pixel)),
     calc(4 * var(--pixel)) calc(5 * var(--pixel)),
     calc(5 * var(--pixel)) calc(5 * var(--pixel));
+  --minimize:
+    calc(2 * var(--pixel)) calc(1 * var(--pixel)),
+    calc(4 * var(--pixel)) calc(1 * var(--pixel)),
+    calc(1 * var(--pixel)) calc(2 * var(--pixel)),
+    calc(2 * var(--pixel)) calc(2 * var(--pixel)),
+    calc(4 * var(--pixel)) calc(2 * var(--pixel)),
+    calc(5 * var(--pixel)) calc(2 * var(--pixel)),
+    calc(1 * var(--pixel)) calc(4 * var(--pixel)),
+    calc(2 * var(--pixel)) calc(4 * var(--pixel)),
+    calc(4 * var(--pixel)) calc(4 * var(--pixel)),
+    calc(5 * var(--pixel)) calc(4 * var(--pixel)),
+    calc(2 * var(--pixel)) calc(5 * var(--pixel)),
+    calc(4 * var(--pixel)) calc(5 * var(--pixel));
   --music:
     calc(3 * var(--pixel)) calc(1 * var(--pixel)),
     calc(4 * var(--pixel)) calc(1 * var(--pixel)),
@@ -171,6 +184,7 @@
 .circle::before { --icon: var(--circle); }
 .disc::before { --icon: var(--disc); }
 .maximize::before { --icon: var(--maximize); }
+:fullscreen .maximize:before { --icon: var(--minimize); }
 .music::before { --icon: var(--music); }
 .pause::before { --icon: var(--pause); }
 .tick::before { --icon: var(--tick); }
@@ -180,9 +194,8 @@
   --color: currentColor;
   color: var(--color);
   display: inline-block;
-  min-width: calc(5 * var(--pixel));
+  width: calc(5 * var(--pixel));
   text-align: left;
-  margin: calc(0 * var(--pixel));
 }
 
 .icon::before {

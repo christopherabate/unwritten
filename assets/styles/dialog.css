@@ -1,0 +1,15 @@
+dialog {
+  color: inherit;
+  background: var(--dark);
+  border: var(--pixel) solid var(--darkest);
+  padding: .5vmin 2.5vmin 2.5vmin 2.5vmin;
+  position: relative;
+}
+
+dialog::backdrop {
+  background: rgba(0, 0, 0, .5);
+}
+
+dialog button[type="submit"] {
+  margin-top: calc(8 * var(--pixel));
+}

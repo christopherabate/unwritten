@@ -3,6 +3,7 @@
 @import "typography.css";
 @import "variables.css";
 @import "forms.css";
+@import "dialog.css";
 @import "animations.css";
 
 .primary { --color: var(--primary) !important; }
@@ -24,7 +25,6 @@ body {
   image-rendering: pixelated;
   color: var(--text);
   background-color: #000;
-  text-shadow: 0 0 calc(5 * var(--pixel)) color-mix(in srgb, var(--text) 25%, transparent);
 }
 
 .screen {
@@ -69,10 +69,11 @@ body {
   initial-value: 0;
 }
 
+dialog::before,
 .shader::before,
 .shutter::after {
   content: "";
-  position: fixed;
+  position: absolute;
   inset: 0;
   pointer-events: none;
   z-index: 1;
@@ -89,13 +90,14 @@ body {
   --shutter-y: 0;
 }
 
+dialog::before,
 .shader::before {
   background: 
     /* scanlines */ linear-gradient(rgba(0, 0, 0, .5) 50%, rgba(255, 255, 255, .05) 50%) 0 0 / 100% 2px,
-    /* r */ radial-gradient(circle at 15% 100%, rgb(255 0 0 / .1) 0%, transparent 50%),
-    /* g */ radial-gradient(circle at 50% 0, rgb(0 255 0 / .1) 0%, transparent 50%),
-    /* b */ radial-gradient(circle at 85% 100%, rgb(0 0 255 / .1) 0%, transparent 50%),
-    /* pixels */ linear-gradient(90deg, rgba(255, 0, 0, .05), rgba(0, 255, 0, .03), rgba(0, 0, 255, .05)) 0 0 / var(--pixel) 100%;
+    /* cyan */ radial-gradient(circle at 50% 0, rgb(0 255 255 / .05) 0%, transparent 50%),
+    /* magenta */ radial-gradient(circle at 15% 100%, rgb(255 0 255 / .05) 0%, transparent 50%),
+    /* yellow */ radial-gradient(circle at 85% 100%, rgb(255 255 0 / .05) 0%, transparent 50%),
+    /* pixels */ linear-gradient(90deg, rgba(255, 0, 0, .05), rgba(0, 255, 0, .05), rgba(0, 0, 255, .05)) 0 0 / var(--pixel) 100%;
 }
 
 .shutter::after {
@@ -108,21 +110,21 @@ body {
     /* noise */ #000 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 500'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.5' numOctaves='1' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E") repeat 0 0 / 500px 500px;
 }
 
+h1, h2, h3, h4, h5, h6,
+legend {
+  font-family: NESPixel;
+  text-shadow:
+    0 var(--pixel) 0 var(--darkest);
+}
+
 #title {
   background: url(../images/unwritten3.png ) no-repeat center / cover;
   display: grid;
   place-items: center;
-
 }
 
 #title h1 {
-  font-size: 5em;
-  text-shadow:
-    inherit,
-    calc(-1 * var(--pixel)) calc(-1 * var(--pixel)) 0,
-    calc(1 * var(--pixel)) calc(-1 * var(--pixel)) 0,
-    calc(-1 * var(--pixel)) calc(1 * var(--pixel)) 0,
-    calc(1 * var(--pixel)) calc(1 * var(--pixel)) 0;
+  font-size: 4em;
 }
 
 #title h1::after {
@@ -149,7 +151,8 @@ body {
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .aberration:not(:has(.turn-off)) { animation: aberration 5s infinite; }
+  .aberration:not(:has(.turn-off)),
+  .aberration dialog { animation: aberration 5s infinite; }
   /* .shader::before { animation: scanlines 2s linear infinite; } */
   .shutter.turn-on:not(.stand-by)::after { animation: turn-on 1s ease-in-out forwards; }
   .shutter.turn-off:not(.stand-by)::after { animation: turn-off 1s ease-in-out forwards; }

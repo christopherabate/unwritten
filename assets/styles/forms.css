@@ -4,7 +4,6 @@ fieldset {
 }
 
 legend {
-  font-family: NESPixel;
   padding: calc(4 * var(--pixel)) calc(4 * var(--pixel)) 0 calc(4 * var(--pixel));
   margin: 0 calc(-4 * var(--pixel)) ;
 }
@@ -47,7 +46,6 @@ button {
   --color: var(--primary);
   color: color-mix(in srgb, var(--color) 10%, var(--darkest));
   background-color: color-mix(in srgb, var(--color) 80%, var(--text));
-  font-family: NESPixel;
   position: relative;
   border: 0;
   padding: 0 calc(4 * var(--pixel));
