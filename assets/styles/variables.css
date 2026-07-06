@@ -20,7 +20,7 @@
 
   /* status */
   --success:   #77f261;
-  --warning:   #f2c261;
+  --warning:   #f0a962;
   --danger:    #f26161;
   --info:      #61c2f2;
   --focus:     var(--tertiary);

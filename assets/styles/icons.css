@@ -190,22 +190,23 @@
 .tick::before { --icon: var(--tick); }
 .cross::before { --icon: var(--cross); }
 
-.icon {
+.icon {display: inline-block;
   --color: currentColor;
   color: var(--color);
-  display: inline-block;
+  position: relative;
   width: calc(5 * var(--pixel));
-  text-align: left;
+  height: calc(5 * var(--pixel));
+  margin: 0 calc(2 * var(--pixel));
 }
 
 .icon::before {
-  display: inline-block;
+  position: absolute;
   content: "";
   pointer-events: none;
-  vertical-align: calc((5 * var(--pixel)));
+  inset: calc(-1 * var(--pixel));
+  display: inline-block;
   width: var(--pixel);
   height: var(--pixel);
-  margin-left: calc(-1 * var(--pixel));
   box-shadow: var(--icon);
 }
 

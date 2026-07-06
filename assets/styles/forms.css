@@ -48,7 +48,7 @@ button {
   background-color: color-mix(in srgb, var(--color) 80%, var(--text));
   position: relative;
   border: 0;
-  padding: 0 calc(4 * var(--pixel));
+  padding: 0 calc(2 * var(--pixel));
   margin: calc(2 * var(--pixel)) var(--pixel);
   user-select: none;
   cursor: pointer;

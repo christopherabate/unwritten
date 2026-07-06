@@ -11,38 +11,40 @@
       <div id="title" class="shutter turn-on shader">
         <h1>unwritten</h1>
         <ul>
-          <li><button type="button" class="primary" disabled><span aria-hidden="true" class="icon interactive arrow-right"></span> Continue</button></li>
-          <li><button type="button" class="primary"><span aria-hidden="true" class="icon interactive arrow-right"></span> New game</button></li>
-          <li><button type="button" class="light" onclick="document.getElementById('settings').showModal()"><span aria-hidden="true" class="icon interactive arrow-right"></span> Settings</button></li>
-          <li><button type="button" class="light" onclick="document.getElementById('credits').showModal()"><span aria-hidden="true" class="icon interactive arrow-right"></span> Credits</button></li>
+          <li><button type="button" class="primary" disabled><span aria-hidden="true" class="icon interactive arrow-right"></span>Continue</button></li>
+          <li><button type="button" class="primary"><span aria-hidden="true" class="icon interactive arrow-right"></span>New game</button></li>
+          <li><button type="button" class="light" data-action="dialog" data-target="settings"><span aria-hidden="true" class="icon interactive arrow-right"></span>Settings</button></li>
+          <li><button type="button" class="light" data-action="dialog" data-target="credits"><span aria-hidden="true" class="icon interactive arrow-right"></span>Credits</button></li>
+          <li><button type="button" class="secondary" data-action="fullscreen"><span aria-hidden="true" class="icon maximize"></span>Fullscreen</button></li>
         </ul>
 
         <dialog id="settings">
           <h2>Settings</h2>
-          <button type="button" onclick="document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen()"><span aria-hidden="true" class="icon maximize"></span> fullscreen</button>
           <form method="dialog">
             <fieldset>
-              <legend>Shader?</legend>
-              <label><input class="tick" type="radio" name="shader" value="true" checked> Yes</label>
-              <label><input class="cross" type="radio" name="shader" value="false"> No</label>
+              <legend>Shader overlay?</legend>
+              <label><input data-action="shader" class="tick" type="radio" name="shader" value="1" checked> Yes</label>
+              <label><input data-action="shader" class="cross" type="radio" name="shader" value="0"> No</label>
             </fieldset>
             <fieldset>
-              <legend>Glitch?</legend>
-              <label><input class="tick" type="radio" name="glitch" value="true" checked> Yes</label>
-              <label><input class="cross" type="radio" name="glitch" value="false"> No</label>
+              <legend>Glitch effects?</legend>
+              <label><input data-action="glitch" class="tick" type="radio" name="glitch" value="1" checked> Yes</label>
+              <label><input data-action="glitch" class="cross" type="radio" name="glitch" value="0"> No</label>
             </fieldset>
-            <button type="submit" class="light"><span aria-hidden="true" class="icon cross"></span> Close</button>
+            <button type="submit" class="light"><span aria-hidden="true" class="icon cross"></span>Close</button>
           </form>
         </dialog>
 
         <dialog id="credits">
           <h2>Credits</h2>
-          <p>Handcrafted by @christopherabate</p>
+          <p>Pixel-handcrafted by <a href="#">@christopherabate</a></p>
+          <p>WCAG 2.2 AA compliant.</p>
           <form method="dialog">
-            <button type="submit" class="light"><span aria-hidden="true" class="icon cross"></span> Close</button>
+            <button type="submit" class="light"><span aria-hidden="true" class="icon cross"></span>Close</button>
           </form>
         </dialog>
       </div>
     </main>
+    <script src="./assets/js/scripts.js"></script>
   </body>
 </html>
