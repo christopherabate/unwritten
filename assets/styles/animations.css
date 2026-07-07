@@ -16,10 +16,11 @@
   100% { --shutter-x: 0; --shutter-y: 0; }
 }
 
-@keyframes stand-by {
-  0% { background-position: 0 0; }
+@keyframes standby {
+  0% { background-position: 0 0; opacity: 1; }
   50% { background-position: -100px 200px; }
-  100% { background-position: -300px -300px; }
+  99% { background-position: -300px -300px; opacity: 1; }
+  100% { background-position: 0 0; opacity: 0; }
 }
 
 @keyframes scanlines {

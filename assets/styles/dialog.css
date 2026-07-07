@@ -15,3 +15,7 @@ dialog::backdrop {
 dialog button[type="submit"] {
   margin-top: calc(8 * var(--pixel));
 }
+
+dialog h2 {
+  text-align: center;
+}

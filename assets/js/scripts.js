@@ -1,18 +1,34 @@
+const screen = document.querySelector(".screen");
+const shutter = document.querySelector(".screen > :first-child");
+
 const actions = {
+  shutter: ({ dataset }) => {
+    shutter?.classList.remove("turn-off", "turn-on");
+    shutter?.classList.add(dataset.target);
+  },
+  standby: () => {
+    shutter?.classList.remove("turn-off", "turn-on");
+    shutter?.classList.add("standby");
+  },
   dialog: ({ dataset }) => document.getElementById(dataset.target)?.showModal(),
   shader: ({ value }) => {
     localStorage.shader = value;
-    document.querySelector("#title")?.classList.toggle("shader", value == 1);
+    shutter?.classList.toggle("shader", value == 1);
   },
   glitch: ({ value }) => {
     localStorage.glitch = value;
-    document.body.classList.toggle("aberration", value == 1);
+    screen?.classList.toggle("aberration", value == 1);
   },
-  fullscreen: () =>
+  fullscreen: () => {
     document.fullscreenElement
     ? document.exitFullscreen()
-    : document.documentElement.requestFullscreen(),
+    : document.documentElement.requestFullscreen();
+  },
 };
+
+shutter?.addEventListener("animationend", (event) => {
+  event.animationName === "standby" && event.currentTarget.classList.remove("standby");
+});
 
 ["click", "change"].forEach((type) => {
   document.addEventListener(type, (event) => {

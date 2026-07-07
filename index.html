@@ -8,11 +8,11 @@
   </head>
   <body>
     <main class="screen">
-      <div id="title" class="shutter turn-on">
+      <div id="title" class="turn-on">
         <h1>unwritten</h1>
         <ul>
           <li><button type="button" class="primary" disabled><span aria-hidden="true" class="icon interactive arrow-right"></span>Continue</button></li>
-          <li><button type="button" class="primary"><span aria-hidden="true" class="icon interactive arrow-right"></span>New game</button></li>
+          <li><button type="button" class="primary" data-action="shutter" data-target="turn-off"><span aria-hidden="true" class="icon interactive arrow-right"></span>New game</button></li>
           <li><button type="button" class="light" data-action="dialog" data-target="settings"><span aria-hidden="true" class="icon interactive arrow-right"></span>Settings</button></li>
           <li><button type="button" class="light" data-action="dialog" data-target="credits"><span aria-hidden="true" class="icon interactive arrow-right"></span>Credits</button></li>
           <li><button type="button" class="secondary" data-action="fullscreen"><span aria-hidden="true" class="icon maximize"></span>Fullscreen</button></li>
@@ -31,7 +31,7 @@
               <label><input data-action="glitch" class="tick" type="radio" name="glitch" value="1"> Yes</label>
               <label><input data-action="glitch" class="cross" type="radio" name="glitch" value="0"> No</label>
             </fieldset>
-            <button type="submit" class="light"><span aria-hidden="true" class="icon cross"></span>Close</button>
+            <button data-action="standby" type="submit" class="light"><span aria-hidden="true" class="icon cross"></span>Close</button>
           </form>
         </dialog>
 
@@ -40,7 +40,7 @@
           <p>Pixel-handcrafted by <a href="#">@christopherabate</a></p>
           <p>WCAG 2.2 AA compliant.</p>
           <form method="dialog">
-            <button type="submit" class="light"><span aria-hidden="true" class="icon cross"></span>Close</button>
+            <button data-action="standby" type="submit" class="light"><span aria-hidden="true" class="icon cross"></span>Close</button>
           </form>
         </dialog>
       </div>
