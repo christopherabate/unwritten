@@ -173,6 +173,14 @@
     calc(4 * var(--pixel)) calc(4 * var(--pixel)),
     calc(1 * var(--pixel)) calc(5 * var(--pixel)),
     calc(5 * var(--pixel)) calc(5 * var(--pixel));
+  --smiley:
+    calc(2 * var(--pixel)) calc(1 * var(--pixel)),
+    calc(4 * var(--pixel)) calc(1 * var(--pixel)),
+    calc(2 * var(--pixel)) calc(2 * var(--pixel)),
+    calc(4 * var(--pixel)) calc(2 * var(--pixel)),
+    calc(1 * var(--pixel)) calc(4 * var(--pixel)),
+    calc(2 * var(--pixel)) calc(5 * var(--pixel)),
+    calc(3 * var(--pixel)) calc(5 * var(--pixel));
 }
 
 .arrow-up::before { --icon: var(--arrow-up); }
@@ -189,6 +197,7 @@
 .pause::before { --icon: var(--pause); }
 .tick::before { --icon: var(--tick); }
 .cross::before { --icon: var(--cross); }
+.smiley::before { --icon: var(--smiley); }
 
 .icon {display: inline-block;
   --color: currentColor;

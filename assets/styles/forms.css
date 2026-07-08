@@ -1,57 +1,79 @@
 fieldset {
   border: var(--pixel) solid var(--text);
-  padding: calc(2 * var(--pixel)) calc(8 * var(--pixel)) calc(6 * var(--pixel)) calc(8 * var(--pixel));
+  padding: calc(2 * var(--pixel)) calc(8 * var(--pixel)) calc(6 * var(--pixel));
 }
 
 legend {
-  padding: calc(4 * var(--pixel)) calc(4 * var(--pixel)) 0 calc(4 * var(--pixel));
-  margin: 0 calc(-4 * var(--pixel)) ;
+  padding: calc(4 * var(--pixel)) calc(4 * var(--pixel)) 0;
+  margin: 0 calc(-4 * var(--pixel));
 }
 
+/* Inputs */
 input:not([type="checkbox"], [type="radio"]) {
   --color: var(--darker);
   color: color-mix(in srgb, var(--color) 80%, black);
   background-color: var(--text);
-  padding: 0 calc(2 * var(--pixel));
+  padding-inline: calc(2 * var(--pixel));
   border: none;
   box-shadow: var(--box);
 }
 
-input[type="radio"] {
-  --icon: var(--arrow-right);
+/* Checkbox + Radio */
+input:is([type="checkbox"], [type="radio"]) {
   appearance: none;
   position: relative;
+  margin-right: var(--pixel);
   width: calc(5 * var(--pixel));
   height: calc(5 * var(--pixel));
   cursor: pointer;
 }
 
-input[type="radio"]:checked::before {
-  color: var(--text);
+input:is([type="checkbox"], [type="radio"]):checked::before {
+  content: "";
   position: absolute;
   inset: calc(-1 * var(--pixel));
-  content: "";
-  pointer-events: none;
   width: var(--pixel);
   height: var(--pixel);
+  color: var(--text);
+  pointer-events: none;
   box-shadow: var(--icon);
 }
 
-label:has([type="radio"]:not(:disabled)) {
-  cursor: pointer;
-  margin-right: 1rem ;
+input:is([type="checkbox"], [type="radio"]):disabled {
+  --color: var(--disabled) !important;
+  opacity: .5;
+  cursor: not-allowed;
+  pointer-events: none;
 }
 
+label:has(:is([type="checkbox"], [type="radio"]):not(:disabled)) {
+  cursor: pointer;
+  margin-right: 1rem;
+}
+
+input[type="checkbox"] { --icon: var(--cross); }
+input[type="radio"]    { --icon: var(--arrow-right); }
+
+input[type="checkbox"]:not(:focus-visible)::after {
+  content: "";
+  position: absolute;
+  inset: calc(-2 * var(--pixel));
+  border: var(--pixel) solid var(--text);
+  pointer-events: none;
+}
+
+/* Button */
 button {
   --color: var(--primary);
-  color: color-mix(in srgb, var(--color) 10%, var(--darkest));
-  background-color: color-mix(in srgb, var(--color) 80%, var(--text));
+  appearance: none;
   position: relative;
   border: 0;
-  padding: 0 calc(2 * var(--pixel));
+  padding-inline: calc(2 * var(--pixel));
   margin: calc(2 * var(--pixel)) var(--pixel);
   user-select: none;
   cursor: pointer;
+  color: color-mix(in srgb, var(--color) 10%, var(--darkest));
+  background-color: color-mix(in srgb, var(--color) 80%, var(--text));
 }
 
 button:hover {
@@ -62,16 +84,17 @@ button:hover {
 button::after {
   content: "";
   position: absolute;
-  z-index:0;
   inset: 0;
+  z-index: 0;
   box-shadow: var(--box);
 }
 
 button:disabled {
   --color: var(--disabled) !important;
+  cursor: not-allowed;
   pointer-events: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  input[type="radio"]:focus-visible { animation: blink .8s steps(1, end) infinite; }
+  input:is([type="checkbox"], [type="radio"]):focus-visible { animation: blink .8s steps(1, end) infinite; }
 }

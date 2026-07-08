@@ -7,15 +7,19 @@
     <title>unwritten_</title>
   </head>
   <body>
-    <main class="screen">
+    <main id="screen">
       <div id="title" class="turn-on">
         <h1>unwritten</h1>
-        <ul>
-          <li><button type="button" class="primary" disabled><span aria-hidden="true" class="icon interactive arrow-right"></span>Continue</button></li>
-          <li><button type="button" class="primary" data-action="shutter" data-target="turn-off"><span aria-hidden="true" class="icon interactive arrow-right"></span>New game</button></li>
-          <li><button type="button" class="light" data-action="dialog" data-target="settings"><span aria-hidden="true" class="icon interactive arrow-right"></span>Settings</button></li>
-          <li><button type="button" class="light" data-action="dialog" data-target="credits"><span aria-hidden="true" class="icon interactive arrow-right"></span>Credits</button></li>
-          <li><button type="button" class="secondary" data-action="fullscreen"><span aria-hidden="true" class="icon maximize"></span>Fullscreen</button></li>
+
+        <ul class="unstyled">
+          <li><button type="button" class="primary" disabled><span aria-hidden="true" class="icon interactive arrow-right"></span>Continue<span aria-hidden="true" class="icon interactive arrow-left"></span></button></li>
+          <li><button type="button" class="primary" data-action="shutter:turn-off"><span aria-hidden="true" class="icon interactive arrow-right"></span>New game<span aria-hidden="true" class="icon interactive arrow-left"></span></button></li>
+        </ul>
+
+        <ul class="toolbar">
+          <li><button type="button" class="link light" data-action="dialog:settings">Settings</button></li>
+          <li><button type="button" class="link light" data-action="dialog:credits">Credits</button></li>
+          <li><button type="button" class="transparent" data-action="standby|fullscreen"><span aria-hidden="true" class="icon maximize"></span>Fullscreen</button></li>
         </ul>
 
         <dialog id="settings">
@@ -31,7 +35,11 @@
               <label><input data-action="glitch" class="tick" type="radio" name="glitch" value="1"> Yes</label>
               <label><input data-action="glitch" class="cross" type="radio" name="glitch" value="0"> No</label>
             </fieldset>
-            <button data-action="standby" type="submit" class="light"><span aria-hidden="true" class="icon cross"></span>Close</button>
+            <fieldset>
+              <legend>test</legend>
+              <label><input data-action="shader" class="" type="checkbox" name="shader"> Shader?</label>
+            </fieldset>
+            <button data-action="shutter:turn-off|shutter:turn-on" type="submit" class="light block"><span aria-hidden="true" class="icon cross"></span>Close</button>
           </form>
         </dialog>
 
@@ -40,7 +48,7 @@
           <p>Pixel-handcrafted by <a href="#">@christopherabate</a></p>
           <p>WCAG 2.2 AA compliant.</p>
           <form method="dialog">
-            <button data-action="standby" type="submit" class="light"><span aria-hidden="true" class="icon cross"></span>Close</button>
+            <button data-action="shutter:turn-off|shutter:turn-on" type="submit" class="light block"><span aria-hidden="true" class="icon cross"></span>Close</button>
           </form>
         </dialog>
       </div>

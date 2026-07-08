@@ -15,6 +15,40 @@
 .info { --color: var(--info) !important; }
 .light { --color: var(--text) !important; }
 .dark { --color: var(--muted) !important; }
+.transparent { color: var(--text) !important; background: none !important; }
+
+a, .link {
+  --color: var(--primary);
+  color: var(--color);
+  appearance: none !important;
+  background: none !important;
+  box-shadow: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  text-decoration: none;
+}
+
+a::after, .link::after { content: none; }
+
+a:hover, .link:hover {
+  color: color-mix(in srgb, var(--color) 80%, var(--muted)) !important;
+  background: none !important;
+  text-decoration: underline;
+  text-decoration-thickness: var(--pixel);
+}
+
+h1, h2, h3, h4, h5, h6, legend, button {
+  font-family: NESPixel;
+}
+
+h1, h2, h3, h4, h5, h6, legend {
+  text-shadow: 0 var(--pixel) 0 var(--darkest);
+}
+
+.block {
+  display: block;
+  width: calc(100% - 2 * var(--pixel));
+}
 
 body {
   min-height: 100dvh;
@@ -27,7 +61,7 @@ body {
   background-color: #000;
 }
 
-.screen {
+#screen {
   --screen-r: 10vmin;
   --screen-v: calc(var(--screen-r)*(1 - sqrt(2)/4));
   --screen-p: calc(var(--screen-v) - var(--screen-r)/2);
@@ -49,7 +83,7 @@ body {
   );
 }
 
-.screen > :first-child {
+#screen > :first-child {
   height: calc(var(--layout-h) * var(--pixel));
   width: calc(var(--layout-w) * var(--pixel));
   position: relative;
@@ -71,7 +105,7 @@ body {
 
 dialog::before,
 .shader::before,
-.screen > :first-child::after {
+#screen > :first-child::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -79,13 +113,13 @@ dialog::before,
   z-index: 1;
 }
 
-.screen > :first-child::after,
-.screen > :first-child.turn-on::after {
+#screen > :first-child::after,
+#screen > :first-child.turn-on::after {
   --shutter-x: 100vmax;
   --shutter-y: 100vmax;
 }
 
-.screen > :first-child.turn-off::after {
+#screen > :first-child.turn-off::after {
   --shutter-x: 0;
   --shutter-y: 0;
 }
@@ -100,27 +134,14 @@ dialog::before,
     /* pixels */ linear-gradient(90deg, rgba(255, 0, 0, .05), rgba(0, 255, 0, .05), rgba(0, 0, 255, .05)) 0 0 / var(--pixel) 100%;
 }
 
-.screen > :first-child::after {
+#screen > :first-child::after {
   background:
     /* shutter */ radial-gradient(ellipse var(--shutter-x) var(--shutter-y) at center, transparent 75%, #111 100%);
 }
 
-.screen > :first-child.standby::after {
+#screen > :first-child.standby::after {
   background:
     /* noise */ #000 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 500'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.5' numOctaves='1' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E") repeat 0 0 / 500px 500px;
-}
-
-h1, h2, h3, h4, h5, h6,
-legend {
-  font-family: NESPixel;
-  text-shadow:
-    0 var(--pixel) 0 var(--darkest);
-}
-
-a {
-  --color: var(--primary);
-  color: var(--color);
-  position: relative;
 }
 
 #title {
@@ -137,10 +158,24 @@ a {
   content: "_";
 }
 
-#title ul {
+ul.unstyled {
   text-align: center;
-  list-style-type: none;
+  list-style: none;
   padding: 0;
+}
+
+ul.toolbar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+}
+
+ul.toolbar > li {
+  flex: 1;
+  text-align: center;
 }
 
 #shelves {
@@ -157,12 +192,12 @@ a {
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .aberration:not(:has(.turn-off)),
-  .aberration dialog { animation: aberration 5s infinite; }
+  .glitch:not(:has(.turn-off)),
+  .glitch dialog { animation: glitch 5s infinite; }
   /* .shader::before { animation: scanlines 2s linear infinite; } */
-  .screen > :first-child.turn-on::after { animation: turn-on 1s ease-in-out forwards; }
-  .screen > :first-child.turn-off::after { animation: turn-off 1s ease-in-out forwards; }
-  .screen > :first-child.standby::after { animation: standby .25s steps(3, end) forwards; }
+  #screen > :first-child.turn-on::after { animation: turn-on 1s ease-in-out forwards; }
+  #screen > :first-child.turn-off::after { animation: turn-off 1s ease-in-out forwards; }
+  #screen > :first-child.standby::after { animation: standby .5s steps(3, end) forwards; }
   #title h1::after { animation: blink 1s steps(1, end) infinite; }
-  #shelves.selected { animation: shelves 5s cubic-bezier(0.9, 0, 0.1, 1) forwards; }
+  #shelves.shelf { animation: shelf 5s cubic-bezier(0.9, 0, 0.1, 1) forwards; }
 }
