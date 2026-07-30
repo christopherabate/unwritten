@@ -24,8 +24,7 @@
 }
 
 @keyframes scanlines {
-  0% { background-position: 0 -1px; }
-  100% { background-position: 0 1px; }
+  50% { background-position-y: calc(1 * var(--pixel)); }
 }
 
 @keyframes blink {

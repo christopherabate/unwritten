@@ -25,33 +25,46 @@
         <button type="button" class="transparent" data-action="standby|fullscreen"><span aria-hidden="true" class="icon maximize"></span>Fullscreen</button>
         
         <dialog id="settings">
-          <h2>Settings</h2>
-          <form method="dialog">
-            <fieldset>
-              <legend>Enable shader overlay?</legend>
-              <label><input data-action="shader" class="tick" type="radio" name="shader" value="1"> Yes</label>
-              <label><input data-action="shader" class="cross" type="radio" name="shader" value="0"> No</label>
-            </fieldset>
-            <fieldset>
-              <legend>Enable glitch effects?</legend>
-              <label><input data-action="glitch" class="tick" type="radio" name="glitch" value="1"> Yes</label>
-              <label><input data-action="glitch" class="cross" type="radio" name="glitch" value="0"> No</label>
-            </fieldset>
-            <fieldset>
-              <legend>An other way to activate shaders</legend>
-              <label><input data-action="shader" class="" type="checkbox" name="shader"> Shader?</label>
-            </fieldset>
-            <button data-action="shutter:turn-off|shutter:turn-on" type="submit" class="light block"><span aria-hidden="true" class="icon cross"></span>Close</button>
-          </form>
+          <div>
+            <h2>Settings</h2>
+            <form method="dialog">
+              <fieldset>
+                <legend>Enable shader overlay?</legend>
+                <label><input data-action="shader" class="tick" type="radio" name="shader" value="1"> Yes</label>
+                <label><input data-action="shader" class="cross" type="radio" name="shader" value="0"> No</label>
+              </fieldset>
+              <fieldset>
+                <legend>Volume</legend>
+                <div><label>Music <input type="range" name="music" value="5" step="1" min="0" max="10"></label></div>
+                <div><label>Effects <input type="range" name="effects" value="5" step="1" min="0" max="10"></label></div>
+              </fieldset>
+              <fieldset>
+                <legend>Text</legend>
+                <label><input type="text"> Text</label>
+              </fieldset>
+              <fieldset>
+                <legend>Enable glitch effects?</legend>
+                <label><input data-action="glitch" class="tick" type="radio" name="glitch" value="1"> Yes</label>
+                <label><input data-action="glitch" class="cross" type="radio" name="glitch" value="0"> No</label>
+              </fieldset>
+              <fieldset>
+                <legend>An other way to activate shaders</legend>
+                <label><input data-action="shader" class="" type="checkbox" name="shader"> Shader?</label>
+              </fieldset>
+              <button data-action="shutter:turn-off|shutter:turn-on" type="submit" class="light block"><span aria-hidden="true" class="icon cross"></span>Close</button>
+            </form>
+          </div>
         </dialog>
 
         <dialog id="credits">
-          <h2>Credits</h2>
-          <p>Pixel-handcrafted by <a href="https://github.com/christopherabate">@christopherabate</a></p>
-          <p>WCAG 2.2 AA compliant.</p>
-          <form method="dialog">
-            <button data-action="shutter:turn-off|shutter:turn-on" type="submit" class="light block"><span aria-hidden="true" class="icon cross"></span>Close</button>
-          </form>
+          <div>
+            <h2>Credits</h2>
+            <p>Pixel-handcrafted by <a href="https://github.com/christopherabate">@christopherabate</a></p>
+            <p>WCAG 2.2 AA compliant.</p>
+            <form method="dialog">
+              <button data-action="shutter:turn-off|shutter:turn-on" type="submit" class="light block"><span aria-hidden="true" class="icon cross"></span>Close</button>
+            </form>
+          </div>
         </dialog>
       </div>
     </main>
