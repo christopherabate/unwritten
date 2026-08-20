@@ -4,6 +4,7 @@
 @import "variables.css";
 @import "forms.css";
 @import "dialog.css";
+@import "sprites.css";
 @import "animations.css";
 
 .primary { --color: var(--primary) !important; }

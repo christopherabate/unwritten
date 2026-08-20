@@ -22,7 +22,7 @@
   --success:   #77f261;
   --warning:   #f2aa61;
   --danger:    #f26161;
-  --info:      #61c2f2;
+  --info:      #1f65a7;
   --focus:     var(--tertiary);
   --disabled:  color-mix(in srgb, var(--muted) 10%, transparent);
 

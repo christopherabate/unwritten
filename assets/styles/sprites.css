@@ -1,0 +1,31 @@
+.sprite {
+  width: calc(64 * var(--pixel));
+  height: calc(64 * var(--pixel));
+  position: relative;
+  overflow: hidden;
+}
+
+.sprite img {
+  --frameset: 6;
+  width: calc(var(--frameset) * 64 * var(--pixel));
+  position: absolute;
+  pointer-events: none;
+}
+
+.sprite img.breathe {
+  --frames: 6;
+  top: calc(-1 * 64 * var(--pixel));
+  animation: sprite 2s steps(var(--frames)) infinite;
+}
+
+.sprite img.blink {
+  --frames: 2;
+  top: calc(-2 * 64 * var(--pixel));
+  animation: sprite .5s steps(var(--frames)) infinite;
+}
+
+.sprite img.wind {
+  --frames: 5;
+  top: calc(-3 * 64 * var(--pixel));
+  animation: sprite 1s steps(var(--frames)) infinite;
+}
