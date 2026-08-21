@@ -159,7 +159,7 @@ dialog::before,
 }
 
 #title {
-  background: url(../images/unwritten.png ) no-repeat center / cover;
+  background: url("../images/backgrounds/title.png") no-repeat center / cover;
   display: grid;
   place-items: end center;
 }
@@ -176,8 +176,8 @@ dialog::before,
 #shelves {
   --shelf-x: 3;
   --shelf-y: 1;
-  --factor: 2;
-  background: url(../images/shelves.png ) repeat center / calc(var(--factor) * 100%);
+  --shelf-scale: 2;
+  background: url("../images/backgrounds/shelves.png") repeat center / calc(var(--shelf-scale) * 100%);
 }
 
 :focus-visible {

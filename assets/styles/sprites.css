@@ -1,31 +1,31 @@
 .sprite {
-  width: calc(64 * var(--pixel));
-  height: calc(64 * var(--pixel));
+  --spritesize: 64;
+  width: calc(var(--spritesize) * var(--pixel));
+  height: calc(var(--spritesize) * var(--pixel));
   position: relative;
   overflow: hidden;
 }
 
 .sprite img {
-  --frameset: 6;
-  width: calc(var(--frameset) * 64 * var(--pixel));
+  --frameset: 24;
   position: absolute;
   pointer-events: none;
+  width: calc(var(--frameset) * var(--spritesize) * var(--pixel));
+  top: calc(-1 * (var(--spriteset) - 1) * var(--spritesize) * var(--pixel));
 }
 
-.sprite img.breathe {
-  --frames: 6;
-  top: calc(-1 * 64 * var(--pixel));
-  animation: sprite 2s steps(var(--frames)) infinite;
-}
-
-.sprite img.blink {
-  --frames: 2;
-  top: calc(-2 * 64 * var(--pixel));
-  animation: sprite .5s steps(var(--frames)) infinite;
+.sprite img.idle {
+  --frames: 24;
+  --spriteset: 1;
+  animation-duration: 5s;
 }
 
 .sprite img.wind {
-  --frames: 5;
-  top: calc(-3 * 64 * var(--pixel));
-  animation: sprite 1s steps(var(--frames)) infinite;
+  --frames: 20;
+  --spriteset: 2;
+  animation-duration: 4s;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .sprite img { animation: sprite 5s steps(var(--frames)) infinite; }
 }
