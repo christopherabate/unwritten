@@ -2,7 +2,6 @@ const screen = document.querySelector("#screen");
 const shutter = document.querySelector("#screen > :first-child");
 
 // Resolves when the requested CSS animation completes on `element`.
-// If `element` is missing, resolves immediately to keep callers simple.
 const waitAnimation = (element, name) =>
   element
     ? new Promise((resolve) =>
@@ -14,53 +13,87 @@ const waitAnimation = (element, name) =>
       )
     : Promise.resolve();
 
-// Mirrors the persisted setting (`localStorage[name]`) to all matching inputs.
-// Supports both:
-// - radios (explicit `value`)
-// - single checkbox-style input (uses "1"/"0")
+// Syncs all controls matching a persisted setting.
 const syncSetting = (name) =>
-  document.querySelectorAll(`input[name="${name}"]`).forEach((element) =>
-    element.checked = element.hasAttribute("value")
-      ? element.value === localStorage[name]
-      : localStorage[name] === "1"
-  );
+  document.querySelectorAll(`input[name="${name}"]`).forEach((element) => {
+    if (element.type === "range") {
+      element.value = localStorage[name];
+    } else if (element.type === "radio") {
+      element.checked = element.value === localStorage[name];
+    } else if (element.type === "checkbox") {
+      element.checked = localStorage[name] === "1";
+    }
+  });
 
-// Action handlers referenced by `data-action` tokens.
+// Action handlers referenced by `data-action`.
 const actions = {
-  // Plays a shutter transition class ("turn-on" / "turn-off") and waits for completion.
+  volume: ({ element, value, setting }) => {
+    const target = document.getElementById(value);
+    if (!target) return;
+
+    const volume = setting ?? element.value;
+
+    localStorage[value] = volume;
+    target.volume = Number(volume);
+  },
+
   shutter: async ({ value }) => {
     shutter?.classList.remove("turn-off", "turn-on");
     shutter?.classList.add(value);
+
     await (shutter && waitAnimation(shutter, value));
+
     shutter?.classList.remove(value);
   },
 
-  // Plays standby animation and removes the class once done.
   standby: async () => {
     shutter?.classList.remove("turn-off", "turn-on");
     shutter?.classList.add("standby");
+
     await (shutter && waitAnimation(shutter, "standby"));
+
     shutter?.classList.remove("standby");
   },
 
-  // Opens <dialog id="...">, where `value` is the dialog id.
-  dialog: ({ value }) => document.getElementById(value)?.showModal(),
+  dialog: ({ value }) =>
+    document.getElementById(value)?.showModal(),
 
-  // Persists shader state, syncs controls, then applies the visual class.
-  shader: ({ element, value }) => {
-    localStorage.shader = value ?? (element.hasAttribute("value") ? element.value : (element.checked ? "1" : "0"));
+  shader: ({ element, setting }) => {
+    const state =
+      setting ??
+      (element.type === "radio"
+        ? element.value
+        : element.checked
+          ? "1"
+          : "0");
+
+    localStorage[shader] = state;
     syncSetting("shader");
-    shutter?.classList.toggle("shader", localStorage.shader === "1");
+
+    shutter?.classList.toggle(
+      "shader",
+      localStorage[shader] === "1"
+    );
   },
 
-  // Persists glitch state, syncs controls, then applies the visual class.
-  glitch: ({ element, value }) => {
-    localStorage.glitch = value ?? (element.hasAttribute("value") ? element.value : (element.checked ? "1" : "0"));
+  glitch: ({ element, setting }) => {
+    const state =
+      setting ??
+      (element.type === "radio"
+        ? element.value
+        : element.checked
+          ? "1"
+          : "0");
+
+    localStorage[glitch] = state;
     syncSetting("glitch");
-    screen?.classList.toggle("glitch", localStorage.glitch === "1");
+
+    screen?.classList.toggle(
+      "glitch",
+      localStorage[glitch] === "1"
+    );
   },
 
-  // Toggles document fullscreen. Rejections are expected in some browser/user contexts.
   fullscreen: async () => {
     try {
       document.fullscreenElement
@@ -69,37 +102,66 @@ const actions = {
     } catch (_) {}
   },
 
-  // Plays shelf animation and removes the class once done.
   shelf: async () => {
     shutter?.classList.add("shelf");
+
     await (shutter && waitAnimation(shutter, "shelf"));
+
     shutter?.classList.remove("shelf");
   },
 };
 
-// Event delegation for all actionable elements via [data-action].
-["click", "change"].forEach((type) =>
+// Delegates events to elements using `data-action`.
+["click", "change", "input"].forEach((type) =>
   document.addEventListener(type, async ({ target }) => {
-    const actionElement = target.closest("[data-action]");
-    if (!actionElement) return;
+    const element = target.closest("[data-action]");
+    if (!element) return;
 
-    // Avoid double-triggering form controls:
-    // - click skips form fields
-    // - change only accepts inputs
-    if (type === "click" && actionElement.matches("input, select, textarea")) return;
-    if (type === "change" && !actionElement.matches("input")) return;
+    if (
+      (type === "click" &&
+        element.matches("input, select, textarea")) ||
+      (type === "change" && !element.matches("input")) ||
+      (type === "input" &&
+        !element.matches('input[type="range"]'))
+    ) {
+      return;
+    }
 
-    // `data-action` supports pipelines like: "shader|shutter:turn-on"
-    for (const chunk of actionElement.dataset.action.split("|")) {
+    for (const chunk of element.dataset.action.split("|")) {
       const [name, value] = chunk.trim().split(":");
-      await actions[name]?.({ element: actionElement, value });
+
+      await actions[name]?.({
+        element,
+        value
+      });
     }
   })
 );
 
-// Bootstraps persisted UI state and immediately applies related visual effects.
-["shader", "glitch"].forEach((name) => {
-  localStorage[name] ??= "1";
+// Default values for persisted settings.
+const settings = {
+  shader: "1",
+  glitch: "1",
+  music: ".5",
+  effects: ".5"
+};
+
+// Restores persisted settings and applies their actions.
+Object.entries(settings).forEach(([name, defaultValue]) => {
+  localStorage[name] ??= defaultValue;
+
+  const element = document.querySelector(`input[name="${name}"]`);
+  if (!element) return;
+
   syncSetting(name);
-  actions[name]?.({ element: document.querySelector(`input[name="${name}"]`), value: localStorage[name] });
+
+  for (const chunk of element.dataset.action?.split("|") ?? []) {
+    const [action, value] = chunk.trim().split(":");
+
+    actions[action]?.({
+      element,
+      value,
+      setting: localStorage[name]
+    });
+  }
 });

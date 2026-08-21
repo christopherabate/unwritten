@@ -39,8 +39,8 @@
               </fieldset>
               <fieldset>
                 <legend>Volume</legend>
-                <div><label>Music <input type="range" name="music" value="5" step="1" min="0" max="10"></label></div>
-                <div><label>Effects <input type="range" name="effects" value="5" step="1" min="0" max="10"></label></div>
+                <div><label>Music <input data-action="volume:music" type="range" name="music" value=".5" step=".1" min="0" max="1"></label></div>
+                <div><label>Effects <input data-action="volume:effects" type="range" name="effects" value=".5" step=".1" min="0" max="1"></label></div>
               </fieldset>
               <fieldset>
                 <legend>Text</legend>
@@ -64,6 +64,7 @@
           <div>
             <h2>Credits</h2>
             <p>Pixel-handcrafted by <a href="https://github.com/christopherabate">@christopherabate</a></p>
+            <p>Music by <a href="https://yannz.itch.io">YannZ</a></p>
             <p>WCAG 2.2 AA compliant.</p>
             <div class="sprite">
               <img class="wind" src="./assets/images/sprites/character.png" alt="character" />
@@ -75,6 +76,8 @@
         </dialog>
       </div>
     </main>
+    <audio id="music" src="./assets/audio/tracks/title.ogg" autoplay loop hidden></audio>
+    <audio id="effects" autoplay loop hidden></audio>
     <script src="./assets/js/scripts.js"></script>
   </body>
 </html>
