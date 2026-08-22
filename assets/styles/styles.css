@@ -15,10 +15,12 @@
 .danger { --color: var(--danger) !important; }
 .info { --color: var(--info) !important; }
 .light { --color: var(--text) !important; }
-.dark { --color: var(--muted) !important; }
+.muted { --color: var(--muted) !important; }
+.dark { --color: var(--darkest) !important; }
 .transparent { color: var(--text) !important; background: none !important; }
 
-a, .link {
+a:not(.button),
+.link {
   --color: var(--primary);
   color: var(--color);
   appearance: none !important;
@@ -28,20 +30,20 @@ a, .link {
   text-decoration: none;
 }
 
-a::after, .link::after { content: none; }
+a:not(.button)::after,
+.link::after { content: none; }
 
-a:hover, .link:hover {
+a:not(.button):hover,
+.link:hover {
   color: color-mix(in srgb, var(--color) 80%, var(--muted)) !important;
   background: none !important;
   text-decoration: underline;
   text-decoration-thickness: var(--pixel);
 }
 
-h1, h2, h3, h4, h5, h6, legend, button {
-  font-family: NESPixel;
-}
-
 h1, h2, h3, h4, h5, h6, legend {
+  color: var(--color);
+  font-family: NESPixel;
   text-shadow: 0 var(--pixel) 0 var(--darkest);
 }
 
@@ -173,6 +175,10 @@ dialog::before,
   content: "_";
 }
 
+#book {
+  background: url("../images/backgrounds/book.png") no-repeat center / cover;
+}
+
 #shelves {
   --shelf-x: 3;
   --shelf-y: 1;
@@ -187,12 +193,11 @@ dialog::before,
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .glitch:not(:has(.turn-off)),
-  .glitch dialog { animation: glitch 5s infinite; }
+  .glitch:not(:has(.turn-off)), .glitch dialog { animation: glitch 5s infinite; }
   .shader dialog::before, .shader::before { animation: scanlines .2s steps(1, end) infinite; }
-  #screen > :first-child.turn-on::after { animation: turn-on 1s ease-in-out forwards; }
-  #screen > :first-child.turn-off::after { animation: turn-off 1s ease-in-out forwards; }
-  #screen > :first-child.standby::after { animation: standby .5s steps(3, end) forwards; }
+  #screen > :first-child.turn-on::after { animation: turn-on .8s ease-in-out forwards; }
+  #screen > :first-child.turn-off::after { animation: turn-off .6s ease-in-out forwards; }
+  #screen > :first-child.standby::after { animation: standby .4s steps(3, end) forwards; }
   #title h1::after { animation: blink 1s steps(1, end) infinite; }
-  #shelves.shelf { animation: shelf 5s cubic-bezier(0.9, 0, 0.1, 1) forwards; }
+  #shelves.shelf { animation: shelf 4s cubic-bezier(0.9, 0, 0.1, 1) forwards; }
 }

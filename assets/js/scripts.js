@@ -27,6 +27,10 @@ const syncSetting = (name) =>
 
 // Action handlers referenced by `data-action`.
 const actions = {
+  goto: ({ value }) => {
+    window.location.href = `${value}.html`;
+  },
+
   volume: ({ element, value, setting }) => {
     const target = document.getElementById(value);
     if (!target) return;

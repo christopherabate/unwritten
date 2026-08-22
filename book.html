@@ -8,21 +8,18 @@
   </head>
   <body>
     <main id="screen">
-      <div id="title" class="turn-on">
-        <h1>unwritten</h1>
+      <div id="book" class="turn-on">
+        <h1 class="muted">unwritten</h1>
 
-        <div class="cols">
-          <ul class="unstyled align-start">
-            <li><button type="button" class="primary" disabled>Continue<span aria-hidden="true" class="icon interactive arrow-left"></span></button></li>
-            <li><button type="button" class="primary" data-action="shutter:turn-off|goto:book|shutter:turn-on">New game<span aria-hidden="true" class="icon interactive arrow-left"></span></button></li>
-          </ul>
-          <ul class="unstyled align-end">
-            <li><button type="button" class="link light" data-action="dialog:settings"><span aria-hidden="true" class="icon interactive arrow-right"></span>Settings</button></li>
-            <li><button type="button" class="link light" data-action="dialog:credits"><span aria-hidden="true" class="icon interactive arrow-right"></span>Credits</button></li>
-          </ul>
+        <ul class="unstyled">
+          <li><button type="button" class="primary" data-action="shutter:turn-off|goto:index|shutter:turn-on"><span aria-hidden="true" class="icon interactive arrow-right"></span>Menu</button></li>
+          <li><a class="button primary" data-action="dialog:settings"><span aria-hidden="true" class="icon interactive arrow-right"></span>Settings</a></li>
+          <li><button type="button" class="link dark" data-action="dialog:credits"><span aria-hidden="true" class="icon interactive arrow-right"></span>Credits</button></li>
+        </ul>
+        
+        <div class="sprite">
+          <img class="idle" src="./assets/images/sprites/character.png" alt="character" />
         </div>
-
-        <button type="button" class="transparent" data-action="fullscreen"><span aria-hidden="true" class="icon maximize"></span>Fullscreen</button>
         
         <dialog id="settings">
           <div>
