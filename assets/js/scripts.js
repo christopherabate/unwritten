@@ -165,3 +165,20 @@ Object.entries(settings).forEach(([name, defaultValue]) => {
     });
   }
 });
+
+const audio = document.getElementById("audio");
+
+async function lancerAudio() {
+  try {
+    await audio.play();
+
+    // Retire les écouteurs après le démarrage réussi.
+    window.removeEventListener("pointerdown", lancerAudio);
+    window.removeEventListener("keydown", lancerAudio);
+  } catch (error) {
+    console.error("Impossible de lancer l'audio :", error);
+  }
+}
+
+window.addEventListener("pointerdown", lancerAudio);
+window.addEventListener("keydown", lancerAudio);
