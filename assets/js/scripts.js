@@ -67,12 +67,12 @@ const actions = {
           ? "1"
           : "0");
 
-    localStorage[shader] = state;
+    localStorage["shader"] = state;
     syncSetting("shader");
 
     shutter?.classList.toggle(
       "shader",
-      localStorage[shader] === "1"
+      localStorage["shader"] === "1"
     );
   },
 
@@ -85,12 +85,12 @@ const actions = {
           ? "1"
           : "0");
 
-    localStorage[glitch] = state;
+    localStorage["glitch"] = state;
     syncSetting("glitch");
 
     screen?.classList.toggle(
       "glitch",
-      localStorage[glitch] === "1"
+      localStorage["glitch"] === "1"
     );
   },
 
@@ -166,19 +166,15 @@ Object.entries(settings).forEach(([name, defaultValue]) => {
   }
 });
 
-const audio = document.getElementById("audio");
+const music = document.getElementById("music");
 
-async function lancerAudio() {
+async function autoplay() {
   try {
-    await audio.play();
-
-    // Retire les écouteurs après le démarrage réussi.
-    window.removeEventListener("pointerdown", lancerAudio);
-    window.removeEventListener("keydown", lancerAudio);
-  } catch (error) {
-    console.error("Impossible de lancer l'audio :", error);
-  }
+    await music.play();
+    window.removeEventListener("pointerdown", autoplay);
+    window.removeEventListener("keydown", autoplay);
+  } catch (_) {}
 }
 
-window.addEventListener("pointerdown", lancerAudio);
-window.addEventListener("keydown", lancerAudio);
+window.addEventListener("pointerdown", autoplay);
+window.addEventListener("keydown", autoplay);
