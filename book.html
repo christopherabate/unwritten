@@ -7,21 +7,43 @@
     <title>unwritten_</title>
   </head>
   <body>
-    <main id="screen">
-      <div id="book" class="turn-on">
-        <h1 class="muted">unwritten</h1>
+    <main id="monitor">
+      <div id="screen" class="turn-on">
+        <div id="scene">
+          <nav>
+            <button type="button" class="muted" data-action="shutter:turn-off|goto:index|shutter:turn-on" aria-label="Title"><span aria-hidden="true" class="icon arrow-up"></span></button>
+            <button type="button" class="muted" data-action="dialog:settings" aria-label="Settings"><span aria-hidden="true" class="icon smiley"></span></button>
+            <button type="button" class="muted" data-action="fullscreen" aria-label="Fullscreen"><span aria-hidden="true" class="icon maximize"></span></button>
+          </nav>
 
-        <ul class="unstyled">
-          <li><button type="button" class="primary" data-action="shutter:turn-off|goto:index|shutter:turn-on"><span aria-hidden="true" class="icon interactive arrow-right"></span>Menu</button></li>
-          <li><a class="button primary" data-action="dialog:settings"><span aria-hidden="true" class="icon interactive arrow-right"></span>Settings</a></li>
-          <li><button type="button" class="link dark" data-action="dialog:credits"><span aria-hidden="true" class="icon interactive arrow-right"></span>Credits</button></li>
-        </ul>
-        
-        <div class="sprite">
-          <img class="idle" src="./assets/images/sprites/character.png" alt="character" />
+          <div id="book">
+            <div id="cover">
+              <div class="bookmark">
+                <button type="button" class="muted" data-action="shutter:turn-off|goto:index|shutter:turn-on" aria-label="Title"><span aria-hidden="true" class="icon arrow-up"></span></button>
+              </div>
+            </div>
+
+            <div id="pages" class="dark">
+              <div id="left_page">
+                <h2 class="align-center">Book</h2>
+                <div class="sprite">
+                  <img class="idle" src="./assets/images/sprites/character.png" alt="character" />
+                </div>
+              </div>
+              <div id="right_page">
+                <h3 class="align-center">Chapter</h3>
+                <small>
+                  <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
+                  <p>Aenean commodo ligula eget dolor. Aenean massa.</p>
+                  <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+                  <p>Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate.</p>
+                </small>
+              </div>
+            </div>
+          </div>            
         </div>
-        
-        <dialog id="settings">
+
+        <dialog id="settings" class="box">
           <div>
             <h2>Settings</h2>
             <form method="dialog">
@@ -53,7 +75,7 @@
           </div>
         </dialog>
 
-        <dialog id="credits">
+        <dialog id="credits" class="box">
           <div>
             <h2>Credits</h2>
             <p>Pixel-handcrafted by <a href="https://github.com/christopherabate">@christopherabate</a></p>
@@ -70,7 +92,6 @@
 
         <audio id="music" src="./assets/audio/tracks/title.ogg" loop hidden preload="auto"></audio>
         <audio id="effects" loop hidden preload="auto"></audio>
-        
       </div>
     </main>
     <script src="./assets/js/scripts.js"></script>

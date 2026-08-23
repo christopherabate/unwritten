@@ -1,5 +1,5 @@
-const screen = document.querySelector("#screen");
-const shutter = document.querySelector("#screen > :first-child");
+const screen = document.querySelector("#monitor");
+const shutter = document.querySelector("#screen");
 
 // Resolves when the requested CSS animation completes on `element`.
 const waitAnimation = (element, name) =>

@@ -7,24 +7,28 @@
     <title>unwritten_</title>
   </head>
   <body>
-    <main id="screen">
-      <div id="title" class="turn-on">
-        <h1>unwritten</h1>
+    <main id="monitor">
+      <div id="screen" class="turn-on">
+        <div id="scene">
+          <div id="title">
+            <div class="cols">
+              <ul class="unstyled align-start">
+                <li><button type="button" class="primary" disabled>Continue<span aria-hidden="true" class="icon interactive arrow-left"></span></button></li>
+                <li><button type="button" class="primary" data-action="shutter:turn-off|goto:book|shutter:turn-on">New game<span aria-hidden="true" class="icon interactive arrow-left"></span></button></li>
+              </ul>
+              <ul class="unstyled align-end">
+                <li><button type="button" class="link light" data-action="dialog:settings"><span aria-hidden="true" class="icon interactive arrow-right"></span>Settings</button></li>
+                <li><button type="button" class="link light" data-action="dialog:credits"><span aria-hidden="true" class="icon interactive arrow-right"></span>Credits</button></li>
+              </ul>
+            </div>
 
-        <div class="cols">
-          <ul class="unstyled align-start">
-            <li><button type="button" class="primary" disabled>Continue<span aria-hidden="true" class="icon interactive arrow-left"></span></button></li>
-            <li><button type="button" class="primary" data-action="shutter:turn-off|goto:book|shutter:turn-on">New game<span aria-hidden="true" class="icon interactive arrow-left"></span></button></li>
-          </ul>
-          <ul class="unstyled align-end">
-            <li><button type="button" class="link light" data-action="dialog:settings"><span aria-hidden="true" class="icon interactive arrow-right"></span>Settings</button></li>
-            <li><button type="button" class="link light" data-action="dialog:credits"><span aria-hidden="true" class="icon interactive arrow-right"></span>Credits</button></li>
-          </ul>
+            <h1>unwritten</h1>
+
+            <button type="button" class="transparent" data-action="fullscreen"><span aria-hidden="true" class="icon maximize"></span>Fullscreen</button>
+          </div>
         </div>
-
-        <button type="button" class="transparent" data-action="fullscreen"><span aria-hidden="true" class="icon maximize"></span>Fullscreen</button>
         
-        <dialog id="settings">
+        <dialog id="settings" class="box">
           <div>
             <h2>Settings</h2>
             <form method="dialog">
@@ -56,7 +60,7 @@
           </div>
         </dialog>
 
-        <dialog id="credits">
+        <dialog id="credits" class="box">
           <div>
             <h2>Credits</h2>
             <p>Pixel-handcrafted by <a href="https://github.com/christopherabate">@christopherabate</a></p>
@@ -73,7 +77,6 @@
 
         <audio id="music" src="./assets/audio/tracks/title.ogg" loop hidden preload="auto"></audio>
         <audio id="effects" loop hidden preload="auto"></audio>
-        
       </div>
     </main>
     <script src="./assets/js/scripts.js"></script>

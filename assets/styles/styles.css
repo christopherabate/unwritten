@@ -17,7 +17,10 @@
 .light { --color: var(--text) !important; }
 .muted { --color: var(--muted) !important; }
 .dark { --color: var(--darkest) !important; }
+
 .transparent { color: var(--text) !important; background: none !important; }
+
+.box { box-shadow: var(--box); }
 
 a:not(.button),
 .link {
@@ -41,8 +44,11 @@ a:not(.button):hover,
   text-decoration-thickness: var(--pixel);
 }
 
-h1, h2, h3, h4, h5, h6, legend {
+p, h1, h2, h3, h4, h5, h6, legend {
   color: var(--color);
+}
+
+h1, legend {
   font-family: NESPixel;
   text-shadow: 0 var(--pixel) 0 var(--darkest);
 }
@@ -64,6 +70,7 @@ h1, h2, h3, h4, h5, h6, legend {
 }
 
 .align-start { text-align: start; }
+.align-center { text-align: center; }
 .align-end { text-align: end; }
 
 body {
@@ -77,7 +84,7 @@ body {
   background-color: #000;
 }
 
-#screen {
+#monitor {
   --screen-r: 10vmin;
   --screen-v: calc(var(--screen-r)*(1 - sqrt(2)/4));
   --screen-p: calc(var(--screen-v) - var(--screen-r)/2);
@@ -99,12 +106,11 @@ body {
   );
 }
 
-#screen > :first-child {
+#screen {
   height: calc(var(--layout-h) * var(--pixel));
   width: calc(var(--layout-w) * var(--pixel));
   position: relative;
   overflow: auto;
-  padding: 5vmin;
 }
 
 @property --shutter-x {
@@ -121,21 +127,21 @@ body {
 
 dialog::before,
 .shader::before,
-#screen > :first-child::after {
+#screen::after {
   content: "";
   position: absolute;
   inset: 0;
   pointer-events: none;
-  z-index: 1;
+  z-index: 2;
 }
 
-#screen > :first-child::after,
-#screen > :first-child.turn-on::after {
+#screen::after,
+#screen.turn-on::after {
   --shutter-x: 100vmax;
   --shutter-y: 100vmax;
 }
 
-#screen > :first-child.turn-off::after {
+#screen.turn-off::after {
   --shutter-x: 0;
   --shutter-y: 0;
 }
@@ -150,20 +156,50 @@ dialog::before,
     /* yellow */ radial-gradient(circle at 85% 100%, rgb(255 255 0 / .05) 0%, transparent 50%);
 }
 
-#screen > :first-child::after {
+#screen::after {
   background:
     /* shutter */ radial-gradient(ellipse var(--shutter-x) var(--shutter-y) at center, transparent 75%, #111 100%);
 }
 
-#screen > :first-child.standby::after {
+#screen.standby::after {
   background:
     /* noise */ #000 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 500'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.5' numOctaves='1' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E") repeat 0 0 / 500px 500px;
 }
 
+#scene > div {
+  position: absolute;
+  inset: 0;
+  overflow: scroll;
+  padding: calc(8 * var(--pixel)) calc(32 * var(--pixel));
+}
+
+nav {
+  position: absolute;
+  inset: 0 0 auto 0;
+  transform: translateY(calc(-22 * var(--pixel)));
+  background-color: var(--lightest);
+  border: var(--pixel) solid var(--darkest);
+  padding-block: calc(4 * var(--pixel));
+  text-align: center;
+  z-index: 1;
+}
+
+nav::before {
+  content: "";
+  position: absolute;
+  inset: auto 0 calc(-8 * var(--pixel));
+  height: calc(8 * var(--pixel));
+}
+
+nav:hover,
+nav:focus-within {
+  transform: translateY(calc(-1 * var(--pixel)));
+}
+
 #title {
-  background: url("../images/backgrounds/title.png") no-repeat center / cover;
   display: grid;
-  place-items: end center;
+  place-items: center;
+  background: url("../images/backgrounds/title.png") no-repeat center / cover;
 }
 
 #title h1 {
@@ -176,7 +212,45 @@ dialog::before,
 }
 
 #book {
-  background: url("../images/backgrounds/book.png") no-repeat center / cover;
+  background: var(--darker);
+}
+
+#book > div {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+#book > div * {
+  pointer-events: auto;
+}
+
+#book #cover {
+  background: url("../images/backgrounds/book_cover.png") no-repeat center / cover;
+}
+
+#book #cover .bookmark {
+  position: absolute;
+  top: calc(28 * var(--pixel));
+  left: calc(10 * var(--pixel));
+}
+
+#book #pages {
+  background: url("../images/backgrounds/book_pages.png") no-repeat center / cover;
+  display: grid;
+  grid-auto-flow: column;
+  column-gap: calc(13 * var(--pixel));
+  padding: calc(12 * var(--pixel)) calc(35 * var(--pixel));
+}
+
+#book #pages #left_page {
+  width: calc(119 * var(--pixel));
+  overflow: hidden;
+}
+
+#book #pages #right_page {
+  width: calc(122 * var(--pixel));
+  overflow: hidden;
 }
 
 #shelves {
@@ -193,11 +267,12 @@ dialog::before,
 }
 
 @media (prefers-reduced-motion: no-preference) {
+  nav { transition: transform .3s ease; }
   .glitch:not(:has(.turn-off)), .glitch dialog { animation: glitch 5s infinite; }
   .shader dialog::before, .shader::before { animation: scanlines .2s steps(1, end) infinite; }
-  #screen > :first-child.turn-on::after { animation: turn-on .8s ease-in-out forwards; }
-  #screen > :first-child.turn-off::after { animation: turn-off .6s ease-in-out forwards; }
-  #screen > :first-child.standby::after { animation: standby .4s steps(3, end) forwards; }
+  #screen.turn-on::after { animation: turn-on .8s ease-in-out forwards; }
+  #screen.turn-off::after { animation: turn-off .6s ease-in-out forwards; }
+  #screen.standby::after { animation: standby .4s steps(3, end) forwards; }
   #title h1::after { animation: blink 1s steps(1, end) infinite; }
   #shelves.shelf { animation: shelf 4s cubic-bezier(0.9, 0, 0.1, 1) forwards; }
 }
