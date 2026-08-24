@@ -1,0 +1,88 @@
+#title {
+  background: 
+    linear-gradient(rgb(1 1 1 / 80%), rgb(1 1 1 / 80%)),
+    url("../images/backgrounds/title.png") no-repeat center / cover;
+}
+
+#title h1,
+#menu h1 {
+  position: absolute;
+  inset: calc(60 * var(--pixel)) 0 auto;
+  font-size: 4em;
+  text-align: center;
+}
+
+#title button {
+  position: absolute;
+  inset: calc(110 * var(--pixel)) auto auto 50%;
+  transform: translateX(-50%);
+}
+
+#menu {
+  background: url("../images/backgrounds/title.png") no-repeat center / cover;
+}
+
+#menu .cols {
+  position: absolute;
+  inset: calc(110 * var(--pixel)) 0 auto;
+  padding-inline: calc(32 * var(--pixel));
+}
+
+#menu > button {
+  position: absolute;
+  inset: calc(158 * var(--pixel)) auto auto 50%;
+  transform: translateX(-50%);
+}
+
+#book {
+  background: var(--darker);
+}
+
+#book > div {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+#book > div * {
+  pointer-events: auto;
+}
+
+#book #cover {
+  background: url("../images/backgrounds/book_cover.png") no-repeat center / cover;
+}
+
+#book #cover .bookmark {
+  position: absolute;
+  top: calc(28 * var(--pixel));
+  left: calc(10 * var(--pixel));
+}
+
+#book #pages {
+  background: url("../images/backgrounds/book_pages.png") no-repeat center / cover;
+  display: grid;
+  grid-auto-flow: column;
+  column-gap: calc(13 * var(--pixel));
+  padding: calc(12 * var(--pixel)) calc(35 * var(--pixel));
+}
+
+#book #pages #left_page {
+  width: calc(119 * var(--pixel));
+  overflow: hidden;
+}
+
+#book #pages #right_page {
+  width: calc(122 * var(--pixel));
+  overflow: hidden;
+}
+
+#shelves {
+  --shelf-x: 3;
+  --shelf-y: 1;
+  --shelf-scale: 2;
+  background: url("../images/backgrounds/shelves.png") repeat center / calc(var(--shelf-scale) * 100%);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  #shelves.shelf { animation: shelf 4s cubic-bezier(0.9, 0, 0.1, 1) forwards; }
+}

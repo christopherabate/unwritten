@@ -10,39 +10,24 @@
     <main id="monitor">
       <div id="screen" class="turn-on">
         <div id="scene">
-          <nav>
-            <button type="button" class="muted" data-action="shutter:turn-off|goto:menu|shutter:turn-on" aria-label="Title"><span aria-hidden="true" class="icon arrow-up"></span></button>
-            <button type="button" class="muted" data-action="dialog:settings" aria-label="Settings"><span aria-hidden="true" class="icon smiley"></span></button>
-            <button type="button" class="muted" data-action="fullscreen" aria-label="Fullscreen"><span aria-hidden="true" class="icon maximize"></span></button>
-          </nav>
+          <div id="menu">
+            <h1 class="unwritten">unwritten</h1>
 
-          <div id="book">
-            <div id="cover">
-              <div class="bookmark">
-                <button type="button" class="muted" data-action="shutter:turn-off|goto:menu|shutter:turn-on" aria-label="Title"><span aria-hidden="true" class="icon arrow-up"></span></button>
-              </div>
+            <div class="cols">
+              <ul class="unstyled align-start">
+                <li><button type="button" class="primary" disabled>Continue<span aria-hidden="true" class="icon interactive arrow-left"></span></button></li>
+                <li><button type="button" class="primary" data-action="shutter:turn-off|goto:book|shutter:turn-on">New game<span aria-hidden="true" class="icon interactive arrow-left"></span></button></li>
+              </ul>
+              <ul class="unstyled align-end">
+                <li><button type="button" class="link light" data-action="dialog:settings"><span aria-hidden="true" class="icon interactive arrow-right"></span>Settings</button></li>
+                <li><button type="button" class="link light" data-action="dialog:credits"><span aria-hidden="true" class="icon interactive arrow-right"></span>Credits</button></li>
+              </ul>
             </div>
 
-            <div id="pages" class="dark">
-              <div id="left_page">
-                <h2 class="align-center">Book</h2>
-                <div class="sprite">
-                  <img class="idle" src="./assets/images/sprites/character.png" alt="character" />
-                </div>
-              </div>
-              <div id="right_page">
-                <h3 class="align-center">Chapter</h3>
-                <small>
-                  <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
-                  <p>Aenean commodo ligula eget dolor. Aenean massa.</p>
-                  <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-                  <p>Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate.</p>
-                </small>
-              </div>
-            </div>
-          </div>            
+            <button type="button" class="transparent" data-action="fullscreen"><span aria-hidden="true" class="icon maximize"></span>Fullscreen</button>
+          </div>
         </div>
-
+        
         <dialog id="settings" class="box">
           <div>
             <h2>Settings</h2>

@@ -5,6 +5,7 @@
 @import "forms.css";
 @import "dialog.css";
 @import "sprites.css";
+@import "scenes.css";
 @import "animations.css";
 
 .primary { --color: var(--primary) !important; }
@@ -51,6 +52,10 @@ p, h1, h2, h3, h4, h5, h6, legend {
 h1, legend {
   font-family: NESPixel;
   text-shadow: 0 var(--pixel) 0 var(--darkest);
+}
+
+h1.unwritten::after {
+  content: "_";
 }
 
 .block {
@@ -196,70 +201,6 @@ nav:focus-within {
   transform: translateY(calc(-1 * var(--pixel)));
 }
 
-#title {
-  display: grid;
-  place-items: center;
-  background: url("../images/backgrounds/title.png") no-repeat center / cover;
-}
-
-#title h1 {
-  font-size: 4em;
-  text-align: center;
-}
-
-#title h1::after {
-  content: "_";
-}
-
-#book {
-  background: var(--darker);
-}
-
-#book > div {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-}
-
-#book > div * {
-  pointer-events: auto;
-}
-
-#book #cover {
-  background: url("../images/backgrounds/book_cover.png") no-repeat center / cover;
-}
-
-#book #cover .bookmark {
-  position: absolute;
-  top: calc(28 * var(--pixel));
-  left: calc(10 * var(--pixel));
-}
-
-#book #pages {
-  background: url("../images/backgrounds/book_pages.png") no-repeat center / cover;
-  display: grid;
-  grid-auto-flow: column;
-  column-gap: calc(13 * var(--pixel));
-  padding: calc(12 * var(--pixel)) calc(35 * var(--pixel));
-}
-
-#book #pages #left_page {
-  width: calc(119 * var(--pixel));
-  overflow: hidden;
-}
-
-#book #pages #right_page {
-  width: calc(122 * var(--pixel));
-  overflow: hidden;
-}
-
-#shelves {
-  --shelf-x: 3;
-  --shelf-y: 1;
-  --shelf-scale: 2;
-  background: url("../images/backgrounds/shelves.png") repeat center / calc(var(--shelf-scale) * 100%);
-}
-
 :focus-visible {
   outline-color: var(--focus);
   outline-offset: var(--pixel);
@@ -267,12 +208,11 @@ nav:focus-within {
 }
 
 @media (prefers-reduced-motion: no-preference) {
+  h1.unwritten::after { animation: blink 1s steps(1, end) infinite; }
   nav { transition: transform .3s ease; }
   .glitch:not(:has(.turn-off)), .glitch dialog { animation: glitch 5s infinite; }
   .shader dialog::before, .shader::before { animation: scanlines .2s steps(1, end) infinite; }
   #screen.turn-on::after { animation: turn-on .8s ease-in-out forwards; }
   #screen.turn-off::after { animation: turn-off .6s ease-in-out forwards; }
   #screen.standby::after { animation: standby .4s steps(3, end) forwards; }
-  #title h1::after { animation: blink 1s steps(1, end) infinite; }
-  #shelves.shelf { animation: shelf 4s cubic-bezier(0.9, 0, 0.1, 1) forwards; }
 }
