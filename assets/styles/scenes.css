@@ -52,10 +52,17 @@
   background: url("../images/backgrounds/book_cover.png") no-repeat center / cover;
 }
 
-#book #cover .bookmark {
+#book #cover .bookmarks {
   position: absolute;
   top: calc(28 * var(--pixel));
-  left: calc(10 * var(--pixel));
+}
+
+#book #cover .bookmarks:nth-child(odd) {
+  left: calc(8 * var(--pixel));
+}
+
+#book #cover .bookmarks:nth-child(even) {
+  right: calc(8 * var(--pixel));
 }
 
 #book #pages {

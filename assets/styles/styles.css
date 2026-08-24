@@ -178,10 +178,10 @@ dialog::before,
   padding: calc(8 * var(--pixel)) calc(32 * var(--pixel));
 }
 
-nav {
+/* nav {
   position: absolute;
   inset: 0 0 auto 0;
-  transform: translateY(calc(-22 * var(--pixel)));
+  transform: translateY(calc(-90%));
   background-color: var(--lightest);
   border: var(--pixel) solid var(--darkest);
   padding-block: calc(4 * var(--pixel));
@@ -199,7 +199,7 @@ nav::before {
 nav:hover,
 nav:focus-within {
   transform: translateY(calc(-1 * var(--pixel)));
-}
+} */
 
 :focus-visible {
   outline-color: var(--focus);
