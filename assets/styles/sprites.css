@@ -1,6 +1,7 @@
 .sprite {
   --spritesize: 64;
-  width: calc(var(--spritesize) * var(--pixel));
+  --offset: 22;
+  width: calc((var(--spritesize) - (2 * var(--offset))) * var(--pixel));
   height: calc(var(--spritesize) * var(--pixel));
   position: relative;
   overflow: hidden;
@@ -9,9 +10,10 @@
 .sprite img {
   --frameset: 24;
   position: absolute;
-  pointer-events: none;
+  pointer-events: none !important;
   width: calc(var(--frameset) * var(--spritesize) * var(--pixel));
   top: calc(-1 * (var(--spriteset) - 1) * var(--spritesize) * var(--pixel));
+  margin-left: calc(-1 * var(--offset) * var(--pixel));
 }
 
 .sprite img.idle {

@@ -1,25 +1,5 @@
 :root {
-  --arrow-up:
-    calc(3 * var(--pixel)) calc(2 * var(--pixel)),
-    calc(2 * var(--pixel)) calc(3 * var(--pixel)),
-    calc(3 * var(--pixel)) calc(3 * var(--pixel)),
-    calc(4 * var(--pixel)) calc(3 * var(--pixel)),
-    calc(1 * var(--pixel)) calc(4 * var(--pixel)),
-    calc(2 * var(--pixel)) calc(4 * var(--pixel)),
-    calc(3 * var(--pixel)) calc(4 * var(--pixel)),
-    calc(4 * var(--pixel)) calc(4 * var(--pixel)),
-    calc(5 * var(--pixel)) calc(4 * var(--pixel));
-  --arrow-right:
-    calc(2 * var(--pixel)) calc(1 * var(--pixel)),
-    calc(2 * var(--pixel)) calc(2 * var(--pixel)),
-    calc(3 * var(--pixel)) calc(2 * var(--pixel)),
-    calc(2 * var(--pixel)) calc(3 * var(--pixel)),
-    calc(3 * var(--pixel)) calc(3 * var(--pixel)),
-    calc(4 * var(--pixel)) calc(3 * var(--pixel)),
-    calc(2 * var(--pixel)) calc(4 * var(--pixel)),
-    calc(3 * var(--pixel)) calc(4 * var(--pixel)),
-    calc(2 * var(--pixel)) calc(5 * var(--pixel));
-  --arrow-down:
+  --arrow:
     calc(1 * var(--pixel)) calc(2 * var(--pixel)),
     calc(2 * var(--pixel)) calc(2 * var(--pixel)),
     calc(3 * var(--pixel)) calc(2 * var(--pixel)),
@@ -29,16 +9,6 @@
     calc(3 * var(--pixel)) calc(3 * var(--pixel)),
     calc(4 * var(--pixel)) calc(3 * var(--pixel)),
     calc(3 * var(--pixel)) calc(4 * var(--pixel));
-  --arrow-left:
-    calc(4 * var(--pixel)) calc(1 * var(--pixel)),
-    calc(3 * var(--pixel)) calc(2 * var(--pixel)),
-    calc(4 * var(--pixel)) calc(2 * var(--pixel)),
-    calc(3 * var(--pixel)) calc(3 * var(--pixel)),
-    calc(4 * var(--pixel)) calc(3 * var(--pixel)),
-    calc(2 * var(--pixel)) calc(3 * var(--pixel)),
-    calc(3 * var(--pixel)) calc(4 * var(--pixel)),
-    calc(4 * var(--pixel)) calc(4 * var(--pixel)),
-    calc(4 * var(--pixel)) calc(5 * var(--pixel));
   --square:
     calc(2 * var(--pixel)) calc(2 * var(--pixel)),
     calc(3 * var(--pixel)) calc(2 * var(--pixel)),
@@ -183,10 +153,10 @@
     calc(3 * var(--pixel)) calc(5 * var(--pixel));
 }
 
-.arrow-up::before { --icon: var(--arrow-up); }
-.arrow-right::before { --icon: var(--arrow-right); }
-.arrow-down::before { --icon: var(--arrow-down); }
-.arrow-left::before { --icon: var(--arrow-left); }
+.arrow-down::before { --icon: var(--arrow); }
+.arrow-up::before { --icon: var(--arrow); transform: rotate(180deg) translateX(calc(-6 * var(--pixel))) translateY(calc(-6 * var(--pixel))); }
+.arrow-right::before { --icon: var(--arrow); transform: rotate(-90deg) translateX(calc(-6 * var(--pixel))); }
+.arrow-left::before { --icon: var(--arrow); transform: rotate(90deg) translateY(calc(-6 * var(--pixel))); }
 .square::before { --icon: var(--square); }
 .dot::before { --icon: var(--dot); }
 .circle::before { --icon: var(--circle); }
@@ -206,6 +176,7 @@
   width: calc(5 * var(--pixel));
   height: calc(5 * var(--pixel));
   margin: 0 calc(2 * var(--pixel));
+  vertical-align: middle;
 }
 
 .icon::before {

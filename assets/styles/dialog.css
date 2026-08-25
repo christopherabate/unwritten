@@ -1,12 +1,10 @@
 dialog {
-  --color: var(--text);
-  color: color-mix(in srgb, var(--color) 10%, var(--text));
-  background-color: color-mix(in srgb, var(--color) 20%, var(--darkest));
+  color: var(--color, var(--text));
+  background-color: var(--shadow);
   border: none;
   position: relative;
   padding: 0;
   overflow: hidden;
-  max-height: 80dvh;
 }
 
 dialog > div {
@@ -14,12 +12,12 @@ dialog > div {
   grid-template-rows: auto 1fr auto;
   min-height: 0;
   max-height: 80dvh;
-  padding: .5vmin 2.5vmin 2.5vmin 2.5vmin;
+  padding: .5vmin 2.5vmin 2.5vmin;
   overflow: auto;
 }
 
 dialog::backdrop {
-  background: rgba(0, 0, 0, .5);
+  background: rgb(0 0 0 / 80%);
 }
 
 dialog button[type="submit"] {
@@ -28,4 +26,18 @@ dialog button[type="submit"] {
 
 dialog h2 {
   text-align: center;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+
+  dialog,
+  dialog::backdrop { transition: opacity .4s ease-out; }
+
+  @starting-style {
+    dialog[open],
+    dialog[open]::backdrop {
+      opacity: 0;
+    }
+  }
+
 }

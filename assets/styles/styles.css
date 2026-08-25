@@ -8,6 +8,12 @@
 @import "scenes.css";
 @import "animations.css";
 
+:focus-visible {
+  outline-color: var(--focus);
+  outline-offset: var(--pixel);
+  outline-width: var(--pixel);
+}
+
 .primary { --color: var(--primary) !important; }
 .secondary { --color: var(--secondary) !important; }
 .tertiary { --color: var(--tertiary) !important; }
@@ -54,8 +60,32 @@ h1, legend {
   text-shadow: 0 var(--pixel) 0 var(--darkest);
 }
 
+h1.unwritten {
+  font-size: 3em;
+}
+
 h1.unwritten::after {
   content: "_";
+}
+
+progress {
+  --color: var(--success);
+  width: 100%;
+  height: calc(4 * var(--pixel));
+  appearance: none;
+  border: var(--pixel) solid var(--darkest);
+}
+
+progress::-webkit-progress-bar {
+  background: var(--darker);
+}
+
+progress::-webkit-progress-value {
+  background: var(--color);
+}
+
+progress::-moz-progress-bar {
+  background: var(--color);
 }
 
 .block {
@@ -137,7 +167,7 @@ dialog::before,
   position: absolute;
   inset: 0;
   pointer-events: none;
-  z-index: 2;
+  z-index: 1;
 }
 
 #screen::after,
@@ -155,7 +185,7 @@ dialog::before,
 .shader::before {
   background:
     /* vignette */ radial-gradient(ellipse at center, transparent 75%, #000 200%),
-    /* pixels */ url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg fill='black' fill-opacity='.3'%3E%3Crect width='24' height='2'/%3E%3Crect y='10' width='24' height='4'/%3E%3Crect y='22' width='24' height='2'/%3E%3C/g%3E%3Cg fill-opacity='.1'%3E%3Cg fill='red'%3E%3Crect x='1' y='2' width='4' height='8'/%3E%3Crect x='13' y='2' width='4' height='8'/%3E%3Crect x='6' y='14' width='4' height='8'/%3E%3Crect x='18' y='14' width='4' height='8'/%3E%3C/g%3E%3Cg fill='green'%3E%3Crect x='5' y='2' width='4' height='8'/%3E%3Crect x='17' y='2' width='4' height='8'/%3E%3Crect y='14' width='2' height='8'/%3E%3Crect x='10' y='14' width='4' height='8'/%3E%3Crect x='22' y='14' width='2' height='8'/%3E%3C/g%3E%3Cg fill='blue'%3E%3Crect y='2' width='1' height='8'/%3E%3Crect x='9' y='2' width='4' height='8'/%3E%3Crect x='21' y='2' width='3' height='8'/%3E%3Crect x='2' y='14' width='4' height='8'/%3E%3Crect x='14' y='14' width='4' height='8'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") 0 0 / calc(2 * var(--pixel)) calc(2 * var(--pixel)),
+    /* pixels */ url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg fill='black' fill-opacity='.2'%3E%3Crect width='24' height='2'/%3E%3Crect y='10' width='24' height='4'/%3E%3Crect y='22' width='24' height='2'/%3E%3C/g%3E%3Cg fill-opacity='.1'%3E%3Cg fill='red'%3E%3Crect x='1' y='2' width='4' height='8'/%3E%3Crect x='13' y='2' width='4' height='8'/%3E%3Crect x='6' y='14' width='4' height='8'/%3E%3Crect x='18' y='14' width='4' height='8'/%3E%3C/g%3E%3Cg fill='green'%3E%3Crect x='5' y='2' width='4' height='8'/%3E%3Crect x='17' y='2' width='4' height='8'/%3E%3Crect y='14' width='2' height='8'/%3E%3Crect x='10' y='14' width='4' height='8'/%3E%3Crect x='22' y='14' width='2' height='8'/%3E%3C/g%3E%3Cg fill='blue'%3E%3Crect y='2' width='1' height='8'/%3E%3Crect x='9' y='2' width='4' height='8'/%3E%3Crect x='21' y='2' width='3' height='8'/%3E%3Crect x='2' y='14' width='4' height='8'/%3E%3Crect x='14' y='14' width='4' height='8'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") 0 0 / calc(2 * var(--pixel)) calc(2 * var(--pixel)),
     /* cyan */ radial-gradient(circle at 50% 0, rgb(0 255 255 / .05) 0%, transparent 50%),
     /* magenta */ radial-gradient(circle at 15% 100%, rgb(255 0 255 / .05) 0%, transparent 50%),
     /* yellow */ radial-gradient(circle at 85% 100%, rgb(255 255 0 / .05) 0%, transparent 50%);
@@ -163,7 +193,7 @@ dialog::before,
 
 #screen::after {
   background:
-    /* shutter */ radial-gradient(ellipse var(--shutter-x) var(--shutter-y) at center, transparent 75%, #111 100%);
+    /* shutter */ radial-gradient(ellipse var(--shutter-x) var(--shutter-y) at center, transparent 75%, var(--shadow) 100%);
 }
 
 #screen.standby::after {
@@ -174,42 +204,21 @@ dialog::before,
 #scene > div {
   position: absolute;
   inset: 0;
-  overflow: scroll;
-  padding: calc(8 * var(--pixel)) calc(32 * var(--pixel));
+  overflow: auto;
 }
 
-/* nav {
+#scene > div > div {
   position: absolute;
-  inset: 0 0 auto 0;
-  transform: translateY(calc(-90%));
-  background-color: var(--lightest);
-  border: var(--pixel) solid var(--darkest);
-  padding-block: calc(4 * var(--pixel));
-  text-align: center;
-  z-index: 1;
+  inset: 0;
+  pointer-events: none;
 }
 
-nav::before {
-  content: "";
-  position: absolute;
-  inset: auto 0 calc(-8 * var(--pixel));
-  height: calc(8 * var(--pixel));
-}
-
-nav:hover,
-nav:focus-within {
-  transform: translateY(calc(-1 * var(--pixel)));
-} */
-
-:focus-visible {
-  outline-color: var(--focus);
-  outline-offset: var(--pixel);
-  outline-width: var(--pixel);
+#scene > div > div * {
+  pointer-events: auto;
 }
 
 @media (prefers-reduced-motion: no-preference) {
   h1.unwritten::after { animation: blink 1s steps(1, end) infinite; }
-  nav { transition: transform .3s ease; }
   .glitch:not(:has(.turn-off)), .glitch dialog { animation: glitch 5s infinite; }
   .shader dialog::before, .shader::before { animation: scanlines .2s steps(1, end) infinite; }
   #screen.turn-on::after { animation: turn-on .8s ease-in-out forwards; }

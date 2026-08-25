@@ -1,86 +1,56 @@
-#title {
-  background: 
-    linear-gradient(rgb(1 1 1 / 80%), rgb(1 1 1 / 80%)),
-    url("../images/backgrounds/title.png") no-repeat center / cover;
-}
-
-#title h1,
-#menu h1 {
-  position: absolute;
-  inset: calc(60 * var(--pixel)) 0 auto;
-  font-size: 4em;
-  text-align: center;
-}
-
-#title button {
-  position: absolute;
-  inset: calc(110 * var(--pixel)) auto auto 50%;
-  transform: translateX(-50%);
-}
-
+#title,
 #menu {
   background: url("../images/backgrounds/title.png") no-repeat center / cover;
 }
 
-#menu .cols {
-  position: absolute;
-  inset: calc(110 * var(--pixel)) 0 auto;
-  padding-inline: calc(32 * var(--pixel));
+#title > #backdrop {
+  background: rgb(0 0 0 / 80%);
 }
 
-#menu > button {
-  position: absolute;
-  inset: calc(158 * var(--pixel)) auto auto 50%;
-  transform: translateX(-50%);
+#title > #disclaimer,
+#menu > div {
+  padding: calc(56 * var(--pixel)) calc(64 * var(--pixel)) 0;
 }
 
 #book {
-  background: var(--darker);
+  background: var(--shadow);
 }
 
-#book > div {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-}
-
-#book > div * {
-  pointer-events: auto;
-}
-
-#book #cover {
+#book > #cover {
   background: url("../images/backgrounds/book_cover.png") no-repeat center / cover;
 }
 
-#book #cover .bookmarks {
+#book > #cover .bookmarks {
   position: absolute;
   top: calc(28 * var(--pixel));
 }
 
-#book #cover .bookmarks:nth-child(odd) {
+#book > #cover .bookmarks:nth-child(odd) {
   left: calc(8 * var(--pixel));
 }
 
-#book #cover .bookmarks:nth-child(even) {
+#book > #cover .bookmarks:nth-child(even) {
   right: calc(8 * var(--pixel));
 }
 
-#book #pages {
+#book > #pages {
   background: url("../images/backgrounds/book_pages.png") no-repeat center / cover;
   display: grid;
   grid-auto-flow: column;
-  column-gap: calc(13 * var(--pixel));
-  padding: calc(12 * var(--pixel)) calc(35 * var(--pixel));
+  column-gap: calc(1 * var(--pixel));
+  padding: calc(12 * var(--pixel)) calc(29 * var(--pixel));
 }
 
-#book #pages #left_page {
-  width: calc(119 * var(--pixel));
-  overflow: hidden;
+#book > #pages > div:nth-child(odd) {
+  width: calc(131 * var(--pixel));
+  padding-inline: calc(4 * var(--pixel));
+  overflow: auto;
 }
 
-#book #pages #right_page {
-  width: calc(122 * var(--pixel));
-  overflow: hidden;
+#book > #pages > div:nth-child(even) {
+  width: calc(134 * var(--pixel));
+  padding-inline: calc(4 * var(--pixel));
+  overflow: auto;
 }
 
 #shelves {

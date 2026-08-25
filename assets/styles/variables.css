@@ -1,28 +1,30 @@
 :root {
   /* layers */
-  --lightest:  #f2c66d;
-  --lighter:   #cc8866;
-  --light:     #a65b5b;
-  --midlight:  #80535a;
-  --middark:   #593e50;
-  --dark:      #382e4d;
-  --darker:    #202540;
-  --darkest:   #122233;
+  --lightest:  hsl(40, 85%, 70%);
+  --lighter:   hsl(20, 50%, 60%);
+  --light:     hsl(0, 30%, 50%);
+  --midlight:  hsl(350, 20%, 40%);
+  --middark:   hsl(320, 15%, 30%);
+  --dark:      hsl(260, 25%, 25%);
+  --darker:    hsl(230, 35%, 20%);
+  --darkest:   hsl(210, 50%, 15%);
 
   /* text */
-  --text:      #fff9d9;
-  --muted:     #acb3bf;
+  --text:      hsl(50, 100%, 95%);
+  --muted:     hsl(220, 15%, 70%);
+  --shadow:    hsl(0, 5%, 10%);
 
   /* accents */
-  --primary:   #f26191;
-  --secondary: #aa61f2;
-  --tertiary:  #61f2c2;
+  --primary:   hsl(340, 85%, 65%);
+  --secondary: hsl(250, 85%, 65%);
+  --tertiary:  hsl(160, 85%, 65%);
 
   /* status */
-  --success:   #77f261;
-  --warning:   #f2aa61;
-  --danger:    #f26161;
-  --info:      #1f65a7;
+  --success:   hsl(100, 85%, 65%);
+  --warning:   hsl(30, 85%, 65%);
+  --danger:    hsl(0, 85%, 65%);
+  --info:      hsl(210, 85%, 65%);
+  
   --focus:     var(--tertiary);
   --disabled:  color-mix(in srgb, var(--muted) 10%, transparent);
 

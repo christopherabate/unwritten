@@ -10,18 +10,12 @@
     <main id="monitor">
       <div id="screen" class="turn-on">
         <div id="scene">
-          <nav>
-            <button type="button" class="muted" data-action="shutter:turn-off|goto:menu|shutter:turn-on" aria-label="Title"><span aria-hidden="true" class="icon arrow-up"></span></button>
-            <button type="button" class="muted" data-action="dialog:settings" aria-label="Settings"><span aria-hidden="true" class="icon smiley"></span></button>
-            <button type="button" class="muted" data-action="fullscreen" aria-label="Fullscreen"><span aria-hidden="true" class="icon maximize"></span></button>
-          </nav>
-
           <div id="book">
             <div id="cover">
               <nav class="bookmarks">
                 <ul class="unstyled">
-                  <li><button type="button" class="primary" data-action="shutter:turn-off|goto:menu|shutter:turn-on" aria-label="Title"><span aria-hidden="true" class="icon arrow-up"></span></button></li>
-                  <li><button type="button" class="secondary" data-action="shutter:turn-off|goto:menu|shutter:turn-on" aria-label="Title"><span aria-hidden="true" class="icon arrow-up"></span></button></li>
+                  <li><button type="button" class="primary" data-action="shutter:turn-off|goto:menu|shutter:turn-on" aria-label="Title"><span aria-hidden="true" class="icon cross"></span></button></li>
+                  <li><button type="button" class="secondary" data-action="dialog:settings" aria-label="Settings"><span aria-hidden="true" class="icon smiley"></span></button></li>
                   <li><button type="button" class="tertiary" data-action="shutter:turn-off|goto:menu|shutter:turn-on" aria-label="Title"><span aria-hidden="true" class="icon arrow-up"></span></button></li>
                 </ul>
               </nav>
@@ -29,24 +23,30 @@
                 <ul class="unstyled">
                   <li><button type="button" class="warning" data-action="shutter:turn-off|goto:menu|shutter:turn-on" aria-label="Title"><span aria-hidden="true" class="icon arrow-up"></span></button></li>
                   <li><button type="button" class="danger" data-action="shutter:turn-off|goto:menu|shutter:turn-on" aria-label="Title"><span aria-hidden="true" class="icon arrow-up"></span></button></li>
-                  <li><button type="button" class="success" data-action="shutter:turn-off|goto:menu|shutter:turn-on" aria-label="Title"><span aria-hidden="true" class="icon arrow-up"></span></button></li>
+                  <li><button type="button" class="success" data-action="shutter:turn-off|goto:menu|shutter:turn-on" aria-label="Title"><span aria-hidden="true" class="icon arrow-down"></span></button></li>
                   <li><button type="button" class="info" data-action="shutter:turn-off|goto:menu|shutter:turn-on" aria-label="Title"><span aria-hidden="true" class="icon arrow-up"></span></button></li>
+                  <li><button type="button" class="muted" data-action="shutter:turn-off|goto:menu|shutter:turn-on" aria-label="Title"><span aria-hidden="true" class="icon arrow-up"></span></button></li>
                   <li><button type="button" disabled data-action="shutter:turn-off|goto:menu|shutter:turn-on" aria-label="Title"><span aria-hidden="true" class="icon arrow-up"></span></button></li>
                 </ul>
               </nav>
             </div>
 
             <div id="pages" class="dark">
-              <div id="left_page">
+              <div>
                 <h2 class="align-center">Book</h2>
+                <progress class="danger" value="42" max="100">42%</progress>
                 <div class="sprite">
                   <img class="idle" src="./assets/images/sprites/character.png" alt="character" />
                 </div>
+                <button type="button" class="success" data-action="shutter:turn-off|goto:menu|shutter:turn-on"><span aria-hidden="true" class="icon tick"></span>Close chapter</button>
               </div>
-              <div id="right_page">
+              <div>
                 <h2 class="align-center">Chapter</h2>
                 <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
                 <p>Aenean commodo ligula eget dolor. Aenean massa.</p>
+                <div class="sprite">
+                  <img class="idle" src="./assets/images/sprites/character.png" alt="character" />
+                </div>
                 <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
                 <p>Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate.</p>
               </div>
