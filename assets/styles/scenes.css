@@ -1,39 +1,41 @@
-#title,
-#menu {
-  background: url("../images/backgrounds/title.png") no-repeat center / cover;
-}
-
-#title > #backdrop {
-  background: rgb(0 0 0 / 80%);
-}
-
-#title > #disclaimer,
-#menu > div {
+#disclaimer > div,
+#title > div,
+#shelves > div {
   padding: calc(56 * var(--pixel)) calc(64 * var(--pixel)) 0;
 }
 
-#book {
+#disclaimer,
+#title {
+  background: url("../images/backgrounds/title.png") no-repeat center / cover;
+}
+
+#disclaimer > div {
+  overflow: auto;
+  background: rgb(0 0 0 / 80%);
+}
+
+#chapter {
   background: var(--shadow);
 }
 
-#book > #cover {
+#chapter > #cover {
   background: url("../images/backgrounds/book_cover.png") no-repeat center / cover;
 }
 
-#book > #cover .bookmarks {
+#chapter > #cover .bookmarks {
   position: absolute;
   top: calc(28 * var(--pixel));
 }
 
-#book > #cover .bookmarks:nth-child(odd) {
+#chapter > #cover .bookmarks:nth-child(odd) {
   left: calc(8 * var(--pixel));
 }
 
-#book > #cover .bookmarks:nth-child(even) {
+#chapter > #cover .bookmarks:nth-child(even) {
   right: calc(8 * var(--pixel));
 }
 
-#book > #pages {
+#chapter > #pages {
   background: url("../images/backgrounds/book_pages.png") no-repeat center / cover;
   display: grid;
   grid-auto-flow: column;
@@ -41,25 +43,23 @@
   padding: calc(12 * var(--pixel)) calc(29 * var(--pixel));
 }
 
-#book > #pages > div:nth-child(odd) {
+#chapter > #pages > div:nth-child(odd) {
   width: calc(131 * var(--pixel));
   padding-inline: calc(4 * var(--pixel));
   overflow: auto;
 }
 
-#book > #pages > div:nth-child(even) {
+#chapter > #pages > div:nth-child(even) {
   width: calc(134 * var(--pixel));
   padding-inline: calc(4 * var(--pixel));
   overflow: auto;
 }
 
 #shelves {
-  --shelf-x: 3;
-  --shelf-y: 1;
   --shelf-scale: 2;
   background: url("../images/backgrounds/shelves.png") repeat center / calc(var(--shelf-scale) * 100%);
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  #shelves.shelf { animation: shelf 4s cubic-bezier(0.9, 0, 0.1, 1) forwards; }
+  .shelf #shelves { animation: shelf 4s cubic-bezier(0.9, 0, 0.1, 1) forwards; }
 }

@@ -44,11 +44,11 @@
 @keyframes shelf {
   0% { background-position: 50% 50%; }
   50% { background-position:
-    calc(var(--shelf-scale) * -1 * var(--shelf-x) * var(--layout-w) * var(--pixel) + 50%)
+    calc(var(--shelf-scale) * -1 * var(--shelf-x, 0) * var(--layout-w) * var(--pixel) + 50%)
     50%;
   }
   100% { background-position:
-    calc(var(--shelf-scale) * -1 * var(--shelf-x) * var(--layout-w) * var(--pixel) + 50%)
-    calc(var(--shelf-scale) * var(--shelf-y) * var(--layout-h) * var(--pixel) + 50%);
+    calc(var(--shelf-scale) * -1 * var(--shelf-x, 0) * var(--layout-w) * var(--pixel) + 50%)
+    calc(var(--shelf-scale) * var(--shelf-y, 0) * var(--layout-h) * var(--pixel) + 50%);
   }
 }

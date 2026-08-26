@@ -1,5 +1,5 @@
-const screen = document.querySelector("#monitor");
-const shutter = document.querySelector("#screen");
+const monitor = document.querySelector("#monitor");
+const screen = document.querySelector("#screen");
 
 // Resolves when the requested CSS animation completes on `element`.
 const waitAnimation = (element, name) =>
@@ -42,21 +42,25 @@ const actions = {
   },
 
   shutter: async ({ value }) => {
-    shutter?.classList.remove("turn-off", "turn-on");
-    shutter?.classList.add(value);
+    screen.classList.remove("turn-off", "turn-on");
+    screen.classList.add(value);
 
-    await (shutter && waitAnimation(shutter, value));
+    screen.inert = true;
+    await (waitAnimation(screen, value));
+    screen.inert = false;
 
-    shutter?.classList.remove(value);
+    screen.classList.remove(value);
   },
 
   standby: async () => {
-    shutter?.classList.remove("turn-off", "turn-on");
-    shutter?.classList.add("standby");
+    screen.classList.remove("turn-off", "turn-on");
+    screen.classList.add("standby");
 
-    await (shutter && waitAnimation(shutter, "standby"));
+    screen.inert = true;
+    await (waitAnimation(screen, "standby"));
+    screen.inert = false;
 
-    shutter?.classList.remove("standby");
+    screen.classList.remove("standby");
   },
 
   dialog: ({ value }) =>
@@ -74,7 +78,7 @@ const actions = {
     localStorage["shader"] = state;
     syncSetting("shader");
 
-    shutter?.classList.toggle(
+    screen.classList.toggle(
       "shader",
       localStorage["shader"] === "1"
     );
@@ -92,7 +96,7 @@ const actions = {
     localStorage["glitch"] = state;
     syncSetting("glitch");
 
-    screen?.classList.toggle(
+    monitor?.classList.toggle(
       "glitch",
       localStorage["glitch"] === "1"
     );
@@ -106,12 +110,21 @@ const actions = {
     } catch (_) {}
   },
 
-  shelf: async () => {
-    shutter?.classList.add("shelf");
+  shelf: async ({ value }) => {
+    const [, x, y] = value?.match(/^(-?\d+),(-?\d+)$/) ?? [];
+    if (x === undefined || y === undefined) return;
 
-    await (shutter && waitAnimation(shutter, "shelf"));
+    screen.style.setProperty("--shelf-x", x);
+    screen.style.setProperty("--shelf-y", y);
+    screen.classList.add("shelf");
 
-    shutter?.classList.remove("shelf");
+    screen.inert = true;
+    await (waitAnimation(screen, "shelf"));
+    screen.inert = false;
+
+    screen.classList.remove("shelf");
+    screen.style.removeProperty("--shelf-x");
+    screen.style.removeProperty("--shelf-y");
   },
 };
 

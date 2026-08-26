@@ -10,20 +10,14 @@
     <main id="monitor">
       <div id="screen" class="turn-on">
         <div id="scene">
-          <div id="title">
-            <div>
-              <h1 class="unwritten align-center">unwritten</h1>
-              <div class="cols">
-                <ul class="unstyled align-start">
-                  <li><button type="button" class="primary" disabled>Continue<span aria-hidden="true" class="icon interactive arrow-left"></span></button></li>
-                  <li><button type="button" class="primary" data-action="shutter:turn-off|goto:shelves|shutter:off">New game<span aria-hidden="true" class="icon interactive arrow-left"></span></button></li>
-                </ul>
-                <ul class="unstyled align-end">
-                  <li><button type="button" class="link light" data-action="dialog:settings"><span aria-hidden="true" class="icon interactive arrow-right"></span>Settings</button></li>
-                  <li><button type="button" class="link light" data-action="dialog:credits"><span aria-hidden="true" class="icon interactive arrow-right"></span>Credits</button></li>
-                  <li><button type="button" class="link light" data-action="shutter:turn-off|goto:index|shutter:off"><span aria-hidden="true" class="icon interactive arrow-right"></span>Disclaimer</button></li>
-                </ul>
-              </div>
+          <div id="shelves">
+            <div class="cols">
+              <ul class="unstyled align-start">
+                <li><button type="button" data-action="shutter:turn-off|goto:title|shutter:off">Title</button></li>
+                <li><button type="button" data-action="shelf:1,4|shutter:turn-off|goto:chapter|shutter:off" class="warning">Horror</button></li>
+                <li><button type="button" data-action="shelf:2,1|shutter:turn-off|goto:chapter|shutter:off" class="warning">Fantasy</button></li>
+                <li><button type="button" data-action="shelf:-1,-1|shutter:turn-off|goto:chapter|shutter:off" class="warning">Science Fiction</button></li>
+              </ul>
             </div>
           </div>
         </div>
