@@ -1,5 +1,6 @@
 const monitor = document.querySelector("#monitor");
 const screen = document.querySelector("#screen");
+const scene = document.querySelector("#scene");
 
 // Resolves when the requested CSS animation completes on `element`.
 const waitAnimation = (element, name) =>
@@ -27,8 +28,11 @@ const syncSetting = (name) =>
 
 // Action handlers referenced by `data-action`.
 const actions = {
-  goto: ({ value }) => {
-    window.location.href = `${value}.html`;
+  goto: async ({ value }) => {
+    const response = await fetch(`./scenes/${value}.html`);
+    if (!response.ok) return;
+
+    scene.innerHTML = await response.text();
   },
 
   volume: ({ element, value, setting }) => {
@@ -48,8 +52,6 @@ const actions = {
     screen.inert = true;
     await (waitAnimation(screen, value));
     screen.inert = false;
-
-    screen.classList.remove(value);
   },
 
   standby: async () => {
@@ -191,5 +193,6 @@ async function autoplay() {
   } catch (_) {}
 }
 
+actions.goto({ value: "disclaimer" });
 window.addEventListener("pointerdown", autoplay);
 window.addEventListener("keydown", autoplay);
