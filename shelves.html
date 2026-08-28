@@ -11,13 +11,26 @@
       <div id="screen" class="turn-on">
         <div id="scene">
           <div id="shelves">
-            <div class="cols">
-              <ul class="unstyled align-start">
-                <li><button type="button" data-action="shutter:turn-off|goto:title|shutter:off">Title</button></li>
-                <li><button type="button" data-action="shelf:1,1|shutter:turn-off|goto:chapter|shutter:off" class="warning">Horror</button></li>
-                <li><button type="button" data-action="shelf:3,2|shutter:turn-off|goto:chapter|shutter:off" class="warning">Fantasy</button></li>
-                <li><button type="button" data-action="shelf:-1,-1|shutter:turn-off|goto:chapter|shutter:off" class="warning">Science Fiction</button></li>
+            <div>
+              <ul class="unstyled">
+                <li><button type="button" class="danger" data-action="shutter:turn-off|goto:title|shutter:off" aria-label="Title"><span aria-hidden="true" class="icon home"></span></button></li>
+                <li><button type="button" class="muted" data-action="dialog:settings" aria-label="Settings"><span aria-hidden="true" class="icon wrench"></span></button></li>
               </ul>
+              <h2 class="align-center">Pick a shelf:</h2>
+              <div class="cols">
+                <div class="box">
+                  <button type="button" data-action="shelf:1,1|shutter:turn-off|goto:chapter|shutter:off" class="stretched-link">Horror</button>
+                  <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit</p>
+                </div>
+                <div class="box">
+                  <button type="button" data-action="shelf:1,2|shutter:turn-off|goto:chapter|shutter:off" class="stretched-link">Fantasy</button>
+                  <p>Aenean commodo ligula eget dolor. Aenean massa</p>
+                </div>
+                <div class="box">
+                  <button type="button" data-action="shelf:-1,-1|shutter:turn-off|goto:chapter|shutter:off" class="stretched-link">Science fiction</button>
+                  <p>Cum sociis natoque penatibus et magnis dis parturient montes</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>

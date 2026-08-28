@@ -151,6 +151,32 @@
     calc(1 * var(--pixel)) calc(4 * var(--pixel)),
     calc(2 * var(--pixel)) calc(5 * var(--pixel)),
     calc(3 * var(--pixel)) calc(5 * var(--pixel));
+  --wrench:
+    calc(4 * var(--pixel)) calc(2 * var(--pixel)),
+    calc(5 * var(--pixel)) calc(2 * var(--pixel)),
+    calc(1 * var(--pixel)) calc(3 * var(--pixel)),
+    calc(2 * var(--pixel)) calc(3 * var(--pixel)),
+    calc(3 * var(--pixel)) calc(3 * var(--pixel)),
+    calc(4 * var(--pixel)) calc(3 * var(--pixel)),
+    calc(4 * var(--pixel)) calc(4 * var(--pixel)),
+    calc(5 * var(--pixel)) calc(4 * var(--pixel));
+  --home:
+    calc(3 * var(--pixel)) calc(1 * var(--pixel)),
+    calc(2 * var(--pixel)) calc(2 * var(--pixel)),
+    calc(3 * var(--pixel)) calc(2 * var(--pixel)),
+    calc(4 * var(--pixel)) calc(2 * var(--pixel)),
+    calc(1 * var(--pixel)) calc(3 * var(--pixel)),
+    calc(2 * var(--pixel)) calc(3 * var(--pixel)),
+    calc(3 * var(--pixel)) calc(3 * var(--pixel)),
+    calc(4 * var(--pixel)) calc(3 * var(--pixel)),
+    calc(5 * var(--pixel)) calc(3 * var(--pixel)),
+    calc(1 * var(--pixel)) calc(4 * var(--pixel)),
+    calc(3 * var(--pixel)) calc(4 * var(--pixel)),
+    calc(5 * var(--pixel)) calc(4 * var(--pixel)),
+    calc(1 * var(--pixel)) calc(5 * var(--pixel)),
+    calc(3 * var(--pixel)) calc(5 * var(--pixel)),
+    calc(4 * var(--pixel)) calc(5 * var(--pixel)),
+    calc(5 * var(--pixel)) calc(5 * var(--pixel));
 }
 
 .arrow-down::before { --icon: var(--arrow); }
@@ -168,21 +194,24 @@
 .tick::before { --icon: var(--tick); }
 .cross::before { --icon: var(--cross); }
 .smiley::before { --icon: var(--smiley); }
+.wrench::before { --icon: var(--wrench); }
+.home::before { --icon: var(--home); }
 
-.icon {display: inline-block;
+.icon {
   --color: currentColor;
+  display: inline-block;
   color: var(--color);
   position: relative;
   width: calc(5 * var(--pixel));
   height: calc(5 * var(--pixel));
   margin: 0 calc(2 * var(--pixel));
   vertical-align: middle;
+  pointer-events: none !important;
 }
 
 .icon::before {
   position: absolute;
   content: "";
-  pointer-events: none;
   inset: calc(-1 * var(--pixel));
   display: inline-block;
   width: var(--pixel);
@@ -191,7 +220,7 @@
 }
 
 .icon.interactive { display: none; }
-:has(> .icon.interactive):is(:hover, :focus-visible, :active) > .icon.interactive { display: inline-block; }
+:has(> .icon.interactive):is(:hover, :focus-visible, :active):not(:disabled) > .icon.interactive { display: inline-block; }
 
 @media (prefers-reduced-motion: no-preference) {
   .icon.interactive { animation: blink .8s steps(1, end) infinite; }

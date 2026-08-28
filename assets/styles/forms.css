@@ -91,7 +91,7 @@ input:disabled {
   --color: var(--disabled) !important;
   opacity: .5;
   cursor: not-allowed;
-  pointer-events: none;
+  pointer-events: none !important;
 }
 
 label:not(:disabled) {
@@ -108,7 +108,7 @@ input[type="checkbox"]:not(:focus-visible)::after {
   position: absolute;
   inset: calc(-2 * var(--pixel));
   border: var(--pixel) solid var(--color, var(--text));
-  pointer-events: none;
+  pointer-events: none !important;
 }
 
 /* Button */
@@ -118,36 +118,27 @@ button,
   font-family: NESPixel;
   display: inline-block;
   appearance: none;
-  position: relative;
   border: 0;
   padding-inline: calc(2 * var(--pixel));
   margin: var(--pixel) var(--pixel) calc(2 * var(--pixel)) var(--pixel);
   user-select: none;
   cursor: pointer;
-  color: color-mix(in srgb, var(--color) 10%, var(--darkest));
-  background-color: color-mix(in srgb, var(--color) 80%, var(--text));
+  color: color-mix(in srgb, var(--color, var(--primary)) 10%, var(--darkest));
+  background-color: color-mix(in srgb, var(--color, var(--primary)) 80%, var(--text));
+  box-shadow: var(--box);
 }
 
 button:hover,
 .button:hover {
   color: var(--darkest);
-  background-color: var(--color);
-}
-
-button::after,
-.button::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  box-shadow: var(--box);
+  background-color: var(--color, var(--primary));
 }
 
 button:disabled,
 .button:disabled {
   --color: var(--disabled) !important;
-  cursor: not-allowed;
-  pointer-events: none;
+  opacity: .5;
+  pointer-events: none !important;
 }
 
 @media (prefers-reduced-motion: no-preference) {

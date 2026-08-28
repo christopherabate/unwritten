@@ -135,11 +135,9 @@ const actions = {
     if (!element) return;
 
     if (
-      (type === "click" &&
-        element.matches("input, select, textarea")) ||
-      (type === "change" && !element.matches("input")) ||
-      (type === "input" &&
-        !element.matches('input[type="range"]'))
+      (type === "click" && element.matches("input, select, textarea"))
+      || (type === "change" && !element.matches("input"))
+      || (type === "input" && !element.matches('input[type="range"]'))
     ) {
       return;
     }

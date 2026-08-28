@@ -1,6 +1,5 @@
 #disclaimer > div,
-#title > div,
-#shelves > div {
+#title > div {
   padding: calc(56 * var(--pixel)) calc(64 * var(--pixel)) 0;
 }
 
@@ -45,13 +44,13 @@
 
 #chapter > #pages > div:nth-child(odd) {
   width: calc(131 * var(--pixel));
-  padding-inline: calc(4 * var(--pixel));
+  padding-inline: calc(6 * var(--pixel));
   overflow: auto;
 }
 
 #chapter > #pages > div:nth-child(even) {
   width: calc(134 * var(--pixel));
-  padding-inline: calc(4 * var(--pixel));
+  padding-inline: calc(6 * var(--pixel));
   overflow: auto;
 }
 
@@ -60,6 +59,21 @@
   background: url("../images/backgrounds/shelves.png") repeat center / calc(var(--shelf-scale) * 100%);
 }
 
+#shelves > div {
+  padding: calc(28 * var(--pixel)) calc(32 * var(--pixel));
+}
+
+#shelves .cols div {
+  padding: calc(4 * var(--pixel));
+  background-color: hsla(0, 5%, 10%, .5);
+}
+
+#shelves .cols div:has(:hover, :focus, :active) {
+  --color: var(--darkest);
+  color: var(--darkest);
+  background-color: var(--text);
+}
+
 @media (prefers-reduced-motion: no-preference) {
-  .shelf #shelves { animation: shelf 4s cubic-bezier(.7, 0, .3, 1) forwards; }
+  .shelf #shelves { animation: shelf 4s cubic-bezier(.5, 0, .1, 1) forwards; }
 }
