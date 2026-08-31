@@ -80,7 +80,7 @@ const actions = {
     localStorage["shader"] = state;
     syncSetting("shader");
 
-    screen.classList.toggle(
+    monitor.classList.toggle(
       "shader",
       localStorage["shader"] === "1"
     );

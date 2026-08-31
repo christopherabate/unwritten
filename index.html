@@ -7,9 +7,12 @@
     <title>unwritten_</title>
   </head>
   <body>
-    <main id="monitor">
-      <div id="screen" class="turn-on">
-        <div id="scene"></div>
+    <main id="monitor" class="glitch shader">
+      <div id="screen">
+        <div id="scene">
+          <p class="align-center">Loading&hellip;</p>
+          <noscript><p>JavaScript is required.</p></noscript>
+        </div>
 
         <dialog id="settings" class="box">
           <div>
@@ -22,8 +25,8 @@
               </fieldset>
               <fieldset>
                 <legend>Volume</legend>
-                <div><label>Music <input data-action="volume:music" type="range" name="music" value=".5" step=".1" min="0" max="1"></label></div>
-                <div><label>Effects <input data-action="volume:effects" type="range" name="effects" value=".5" step=".1" min="0" max="1"></label></div>
+                <div><label>Music <input data-on="input" data-event="volume" type="range" name="music" value=".5" step=".1" min="0" max="1"></label></div>
+                <div><label>Effects <input data-on="input" data-event="volume" type="range" name="effects" value=".5" step=".1" min="0" max="1"></label></div>
               </fieldset>
               <fieldset>
                 <legend>Text</legend>
@@ -38,7 +41,7 @@
                 <legend>An other way to activate shaders</legend>
                 <label><input data-action="shader" class="" type="checkbox" name="shader"> Shader?</label>
               </fieldset>
-              <button data-action="standby" type="submit" class="light block"><span aria-hidden="true" class="icon cross"></span>Close</button>
+              <button data-event="screen:standby|screen" type="submit" class="light block"><span aria-hidden="true" class="icon cross"></span>Close</button>
             </form>
           </div>
         </dialog>
@@ -53,15 +56,18 @@
               <img class="wind" src="./assets/images/sprites/character.png" alt="character" />
             </div>
             <form method="dialog">
-              <button data-action="standby" type="submit" class="light block"><span aria-hidden="true" class="icon cross"></span>Close</button>
+              <button data-event="screen:standby|screen" type="submit" class="light block"><span aria-hidden="true" class="icon cross"></span>Close</button>
             </form>
           </div>
         </dialog>
 
         <audio id="music" src="./assets/audio/tracks/title.ogg" loop hidden preload="auto"></audio>
-        <audio id="effects" loop hidden preload="auto"></audio>
+        <audio id="effects" hidden preload="auto"></audio>
       </div>
     </main>
-    <script src="./assets/js/scripts.js"></script>
+    <script src="./assets/js/events.js"></script>
+    <script src="./assets/js/navigation.js"></script>
+    <script src="./assets/js/animation.js"></script>
+    <script src="./assets/js/audio.js"></script>
   </body>
 </html>

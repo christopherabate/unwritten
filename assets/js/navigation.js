@@ -1,0 +1,39 @@
+// open dialog
+document.addEventListener('dialog', event => {
+  document.getElementById(event.detail.value)?.showModal();
+});
+
+// load scene
+document.addEventListener('scene', async event => {
+  const scene = document.getElementById('scene');
+  if (!scene) return;
+
+  const response = await fetch(`./scenes/${event.detail.value}.html`);
+  if (!response.ok) return;
+
+  scene.innerHTML = await response.text();
+});
+
+// disclaimer
+document.addEventListener('disclaimer', event => {
+  if (!event.detail.value) return;
+
+  if (event.detail.value === 'accept') {
+    localStorage.setItem('disclaimer', '1');
+  }
+
+  if (event.detail.value === 'decline') {
+    localStorage.removeItem('disclaimer');
+  }
+});
+
+// default scene
+document.dispatchEvent(
+  new CustomEvent('scene', {
+    detail: {
+      value: localStorage.getItem('disclaimer')
+        ? 'title'
+        : 'disclaimer'
+    }
+  })
+);
