@@ -16,7 +16,12 @@ document.addEventListener('monitor', event => {
   if (!monitor) return;
   if (!event.detail.value) return monitor.classList.value = '';
 
-  monitor.classList.toggle(event.detail.value);
+  monitor.classList.toggle(
+    event.detail.value,
+    event.detail.element.value === 'on'
+  );
+
+  persist(event);
 });
 
 // screen

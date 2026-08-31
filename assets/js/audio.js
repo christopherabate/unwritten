@@ -9,8 +9,12 @@
 
 // music volume
 document.addEventListener('volume', event => {
-  const audio = document.getElementById(event.detail.element.name);
+  if (!event.detail.value) return
+
+  const audio = document.getElementById(event.detail.value);
   if (!audio) return;
 
   audio.volume = Number(event.detail.element.value);
+
+  persist(event);
 });

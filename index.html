@@ -7,7 +7,7 @@
     <title>unwritten_</title>
   </head>
   <body>
-    <main id="monitor" class="glitch shader">
+    <main id="monitor">
       <div id="screen">
         <div id="scene">
           <p class="align-center">Loading&hellip;</p>
@@ -20,13 +20,13 @@
             <form method="dialog">
               <fieldset>
                 <legend>Enable shader overlay?</legend>
-                <label><input data-action="shader" class="tick" type="radio" name="shader" value="1"> Yes</label>
-                <label><input data-action="shader" class="cross" type="radio" name="shader" value="0"> No</label>
+                <label><input data-on="change" data-event="monitor:shader" class="tick" type="radio" name="shader" value="on"> Yes</label>
+                <label><input data-on="change" data-event="monitor:shader" class="cross" type="radio" name="shader" value="off"> No</label>
               </fieldset>
               <fieldset>
                 <legend>Volume</legend>
-                <div><label>Music <input data-on="input" data-event="volume" type="range" name="music" value=".5" step=".1" min="0" max="1"></label></div>
-                <div><label>Effects <input data-on="input" data-event="volume" type="range" name="effects" value=".5" step=".1" min="0" max="1"></label></div>
+                <div><label>Music <input data-on="input" data-event="volume:music" type="range" name="music" value=".5" step=".1" min="0" max="1"></label></div>
+                <div><label>Effects <input data-on="input" data-event="volume:effects" type="range" name="effects" value=".5" step=".1" min="0" max="1"></label></div>
               </fieldset>
               <fieldset>
                 <legend>Text</legend>
@@ -34,12 +34,12 @@
               </fieldset>
               <fieldset>
                 <legend>Enable glitch effects?</legend>
-                <label><input data-action="glitch" class="tick" type="radio" name="glitch" value="1"> Yes</label>
-                <label><input data-action="glitch" class="cross" type="radio" name="glitch" value="0"> No</label>
+                <label><input data-on="change" data-event="monitor:glitch" class="tick" type="radio" name="glitch" value="on"> Yes</label>
+                <label><input data-on="change" data-event="monitor:glitch" class="cross" type="radio" name="glitch" value="off"> No</label>
               </fieldset>
               <fieldset>
                 <legend>An other way to activate shaders</legend>
-                <label><input data-action="shader" class="" type="checkbox" name="shader"> Shader?</label>
+                <label><input data-on="change" data-event="monitor:shader" type="checkbox" name="shader"> Shader?</label>
               </fieldset>
               <button data-event="screen:standby|screen" type="submit" class="light block"><span aria-hidden="true" class="icon cross"></span>Close</button>
             </form>
@@ -69,5 +69,6 @@
     <script src="./assets/js/navigation.js"></script>
     <script src="./assets/js/animation.js"></script>
     <script src="./assets/js/audio.js"></script>
+    <script src="./assets/js/settings.js"></script>
   </body>
 </html>
