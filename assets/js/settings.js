@@ -16,21 +16,34 @@ export const data = JSON.parse(
   localStorage.getItem('settings') ?? '{}'
 );
 
-export const save = () => {
-  localStorage.setItem(
-    'settings',
-    JSON.stringify(data)
-  );
-};
-
 export const update = event => {
-  if (event.detail.source === 'settings') return;
+  document.dispatchEvent(
+    new CustomEvent('settings', {
+      detail: {
+        group: event.type,
+        key: event.detail.value,
+        value: event.detail.element.value
+      }
+    })
+  );
+
+ if (event.detail.source === 'init') {
+    document.dispatchEvent(
+      new CustomEvent(event.type, {
+        detail: {
+          value: event.detail.value,
+          element: event.detail.element
+        }
+      })
+    );
+
+    return;
+  }
 
   data[event.type] ??= {};
-  data[event.type][event.detail.value] =
-    event.detail.element.value;
+  data[event.type][event.detail.value] = event.detail.element.value;
 
-  save();
+  localStorage.setItem('settings', JSON.stringify(data));
 };
 
 export const init = () => {
@@ -42,19 +55,16 @@ export const init = () => {
     });
   });
 
-  save();
-
   Object.entries(data).forEach(([group, values]) => {
     Object.entries(values).forEach(([key, value]) => {
-      document.dispatchEvent(
-        new CustomEvent(group, {
-          detail: {
-            value: key,
-            element: { value },
-            source: 'settings'
-          }
-        })
-      );
+      update({
+        type: group,
+        detail: {
+          value: key,
+          element: { value },
+          source: 'init'
+        }
+      });
     });
   });
 };
