@@ -1,3 +1,6 @@
+import { INTERNAL } from './events.js';
+import { persist } from './settings.js';
+
 // Resolves when CSS animation 'name' on 'element' ends.
 const wait = (element, name) => element
   ? new Promise(resolve =>
@@ -16,10 +19,12 @@ document.addEventListener('monitor', event => {
   if (!monitor) return;
   if (!event.detail.value) return monitor.classList.value = '';
 
-  monitor.classList.toggle(
-    event.detail.value,
-    event.detail.element.value === 'on'
-  );
+  event.detail.element.value = event.detail.element.type === 'checkbox'
+    ? event.detail.element.checked ? 'on' : 'off'
+    : event.detail.element.value;
+
+  monitor.classList.toggle(event.detail.value, event.detail.element.value === 'on');
+  console.log('monitor:', event.detail.value, event.detail.element.value);
 
   persist(event);
 });

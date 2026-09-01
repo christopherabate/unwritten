@@ -1,3 +1,5 @@
+import { persist } from './settings.js';
+
 // music autoplay
 ['pointerdown', 'keydown'].forEach(type => {
   document.addEventListener(type, async () => {

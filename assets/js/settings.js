@@ -13,27 +13,12 @@ const DEFAULT_SETTINGS = {
 };
 
 // default init
-const settings = JSON.parse(
+export const settings = JSON.parse(
   localStorage.getItem('settings')
   ?? JSON.stringify(DEFAULT_SETTINGS)
 );
 
 localStorage.setItem('settings', JSON.stringify(settings));
-
-// apply settings
-Object.entries(settings).forEach(([group, values]) => {
-  Object.entries(values).forEach(([key, value]) => {
-    document.dispatchEvent(
-      new CustomEvent(group, {
-        detail: {
-          value: key,
-          element: { value },
-          source: 'settings'
-        }
-      })
-    );
-  });
-});
 
 // settings listener
 document.addEventListener('settings', ({ detail }) => {
@@ -45,19 +30,40 @@ document.addEventListener('settings', ({ detail }) => {
 });
 
 // settings dispatcher
-const persist = event => {
+export const persist = event => {
   if (event.detail.source === 'settings') return;
-  if (event.detail.element.type === 'radio' && !event.detail.element.checked) return;
+
+  console.log('group: ',event.type,
+        'key: ',event.detail.value,
+        'value: ',event.detail.element.value);
 
   document.dispatchEvent(
     new CustomEvent('settings', {
       detail: {
         group: event.type,
         key: event.detail.value,
-        value: event.detail.element.type === 'checkbox'
-          ? event.detail.element.checked ? 'on' : 'off'
-          : event.detail.element.value
+        value: event.detail.element.value
       }
     })
   );
+};
+
+// apply settings
+export const applySettings = settings => {
+  Object.entries(settings).forEach(([group, values]) => {
+    Object.entries(values).forEach(([key, value]) => {
+
+      console.log('apply settings:', group, key, value);
+
+      document.dispatchEvent(
+        new CustomEvent(group, {
+          detail: {
+            value: key,
+            element: { value },
+            source: 'settings'
+          }
+        })
+      );
+    });
+  })
 };

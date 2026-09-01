@@ -116,4 +116,4 @@
   });
 });
 
-const INTERNAL = ['value', 'element', 'trigger', 'done'];
+export const INTERNAL = ['value', 'element', 'trigger', 'done'];
