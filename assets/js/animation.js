@@ -1,5 +1,5 @@
 import { INTERNAL } from './events.js';
-import { persist } from './settings.js';
+import * as settings from './settings.js';
 
 // Resolves when CSS animation 'name' on 'element' ends.
 const wait = (element, name) => element
@@ -24,9 +24,8 @@ document.addEventListener('monitor', event => {
     : event.detail.element.value;
 
   monitor.classList.toggle(event.detail.value, event.detail.element.value === 'on');
-  console.log('monitor:', event.detail.value, event.detail.element.value);
 
-  persist(event);
+  settings.update(event);
 });
 
 // screen

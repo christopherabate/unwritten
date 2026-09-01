@@ -1,4 +1,4 @@
-import { persist } from './settings.js';
+import * as settings from './settings.js';
 
 // music autoplay
 ['pointerdown', 'keydown'].forEach(type => {
@@ -18,5 +18,5 @@ document.addEventListener('volume', event => {
 
   audio.volume = Number(event.detail.element.value);
 
-  persist(event);
+  settings.update(event);
 });

@@ -4,57 +4,48 @@ const DEFAULT_SETTINGS = {
     shader: 'on'
   },
   volume: {
-    music: 1,
-    effects: 1
+    music: .5,
+    effects: .5
   },
   i18n: {
-    lang: 'fr'
+    lang: 'en'
   }
 };
 
-// default init
-export const settings = JSON.parse(
-  localStorage.getItem('settings')
-  ?? JSON.stringify(DEFAULT_SETTINGS)
+export const data = JSON.parse(
+  localStorage.getItem('settings') ?? '{}'
 );
 
-localStorage.setItem('settings', JSON.stringify(settings));
-
-// settings listener
-document.addEventListener('settings', ({ detail }) => {
-  const { group, key, value } = detail;
-  settings[group] ??= {};
-  settings[group][key] = value;
-
-  localStorage.setItem('settings', JSON.stringify(settings));
-});
-
-// settings dispatcher
-export const persist = event => {
-  if (event.detail.source === 'settings') return;
-
-  console.log('group: ',event.type,
-        'key: ',event.detail.value,
-        'value: ',event.detail.element.value);
-
-  document.dispatchEvent(
-    new CustomEvent('settings', {
-      detail: {
-        group: event.type,
-        key: event.detail.value,
-        value: event.detail.element.value
-      }
-    })
+export const save = () => {
+  localStorage.setItem(
+    'settings',
+    JSON.stringify(data)
   );
 };
 
-// apply settings
-export const applySettings = settings => {
-  Object.entries(settings).forEach(([group, values]) => {
+export const update = event => {
+  if (event.detail.source === 'settings') return;
+
+  data[event.type] ??= {};
+  data[event.type][event.detail.value] =
+    event.detail.element.value;
+
+  save();
+};
+
+export const init = () => {
+  Object.entries(DEFAULT_SETTINGS).forEach(([group, values]) => {
+    data[group] ??= {};
+
     Object.entries(values).forEach(([key, value]) => {
+      data[group][key] ??= value;
+    });
+  });
 
-      console.log('apply settings:', group, key, value);
+  save();
 
+  Object.entries(data).forEach(([group, values]) => {
+    Object.entries(values).forEach(([key, value]) => {
       document.dispatchEvent(
         new CustomEvent(group, {
           detail: {
@@ -65,5 +56,5 @@ export const applySettings = settings => {
         })
       );
     });
-  })
+  });
 };
