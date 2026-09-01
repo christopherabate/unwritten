@@ -128,8 +128,8 @@ button,
   box-shadow: var(--box);
 }
 
-button:hover,
-.button:hover {
+button:hover:not(:disabled),
+.button:hover:not(:disabled) {
   color: var(--darkest);
   background-color: var(--color, var(--primary));
 }
@@ -139,6 +139,7 @@ button:disabled,
   --color: var(--disabled) !important;
   opacity: .5;
   pointer-events: none !important;
+  cursor: auto;
 }
 
 @media (prefers-reduced-motion: no-preference) {

@@ -199,6 +199,7 @@
 
 .icon {
   --color: currentColor;
+  font-style: normal;
   display: inline-block;
   color: var(--color);
   position: relative;

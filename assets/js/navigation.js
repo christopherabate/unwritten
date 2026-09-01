@@ -4,14 +4,16 @@ document.addEventListener('dialog', event => {
 });
 
 // load scene
-document.addEventListener('scene', async event => {
+document.addEventListener('scene', event => {
   const scene = document.getElementById('scene');
   if (!scene) return;
 
-  const response = await fetch(`./scenes/${event.detail.value}.html`);
-  if (!response.ok) return;
+  event.detail.done = (async () => {
+    const response = await fetch(`./scenes/${event.detail.value}.html`);
+    if (!response.ok) return;
 
-  scene.innerHTML = await response.text();
+    scene.innerHTML = await response.text();
+  })();
 });
 
 // disclaimer
@@ -26,14 +28,3 @@ document.addEventListener('disclaimer', event => {
     localStorage.removeItem('disclaimer');
   }
 });
-
-// default scene
-document.dispatchEvent(
-  new CustomEvent('scene', {
-    detail: {
-      value: localStorage.getItem('disclaimer')
-        ? 'title'
-        : 'disclaimer'
-    }
-  })
-);

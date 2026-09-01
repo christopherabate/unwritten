@@ -10,53 +10,55 @@
     <main id="monitor">
       <div id="screen">
         <div id="scene">
-          <p class="align-center">Loading&hellip;</p>
-          <noscript><p>JavaScript is required.</p></noscript>
+          <p class="align-center" data-i18n="loading"><span data-i18n-content>#</span></p>
         </div>
 
         <dialog id="settings" class="box">
           <div>
-            <h2>Settings</h2>
+            <h2 data-i18n="settings"><span data-i18n-content>#</span></h2>
             <form method="dialog">
               <fieldset>
-                <legend>Enable shader overlay?</legend>
-                <label><input data-on="change" data-event="monitor:shader" class="tick" type="radio" name="shader" value="on"> Yes</label>
-                <label><input data-on="change" data-event="monitor:shader" class="cross" type="radio" name="shader" value="off"> No</label>
+                <legend data-i18n="language"><span data-i18n-content>#</span></legend>
+                <div>
+                  <label data-i18n="language_label"><span data-i18n-content>#</span>
+                    <select data-on="change" data-event="locale:lang" name="lang">
+                      <option value="fr">Français</option>
+                      <option value="en">English</option>
+                    </select>
+                  </label>
+                </div>
               </fieldset>
               <fieldset>
-                <legend>Volume</legend>
-                <div><label>Music <input data-on="input" data-event="volume:music" type="range" name="music" value=".5" step=".1" min="0" max="1"></label></div>
-                <div><label>Effects <input data-on="input" data-event="volume:effects" type="range" name="effects" value=".5" step=".1" min="0" max="1"></label></div>
+                <legend data-i18n="volume"><span data-i18n-content>#</span></legend>
+                <div><label data-i18n="music"><span data-i18n-content>#</span> <input data-on="input" data-event="volume:music" type="range" name="music" value=".5" step=".1" min="0" max="1"></label></div>
+                <div><label data-i18n="effects"><span data-i18n-content>#</span> <input data-on="input" data-event="volume:effects" type="range" name="effects" value=".5" step=".1" min="0" max="1"></label></div>
               </fieldset>
               <fieldset>
-                <legend>Text</legend>
-                <label><input type="text"> Text</label>
+                <legend data-i18n="enable_shader"><span data-i18n-content>#</span></legend>
+                <label data-i18n="yes"><input data-on="change" data-event="monitor:shader" class="tick" type="radio" name="shader" value="on"> <span data-i18n-content>#</span></label>
+                <label data-i18n="no"><input data-on="change" data-event="monitor:shader" class="cross" type="radio" name="shader" value="off"> <span data-i18n-content>#</span></label>
               </fieldset>
               <fieldset>
-                <legend>Enable glitch effects?</legend>
-                <label><input data-on="change" data-event="monitor:glitch" class="tick" type="radio" name="glitch" value="on"> Yes</label>
-                <label><input data-on="change" data-event="monitor:glitch" class="cross" type="radio" name="glitch" value="off"> No</label>
+                <legend data-i18n="enable_glitch"><span data-i18n-content>#</span></legend>
+                <label data-i18n="yes"><input data-on="change" data-event="monitor:glitch" class="tick" type="radio" name="glitch" value="on"> <span data-i18n-content>#</span></label>
+                <label data-i18n="no"><input data-on="change" data-event="monitor:glitch" class="cross" type="radio" name="glitch" value="off"> <span data-i18n-content>#</span></label>
               </fieldset>
-              <fieldset>
-                <legend>An other way to activate shaders</legend>
-                <label><input data-on="change" data-event="monitor:shader" type="checkbox" name="shader"> Shader?</label>
-              </fieldset>
-              <button data-event="screen:standby|screen" type="submit" class="light block"><span aria-hidden="true" class="icon cross"></span>Close</button>
+              <button data-event="screen:standby|screen" type="submit" class="light block" data-i18n="close"><i aria-hidden="true" class="icon cross"></i><span data-i18n-content>#</span></button>
             </form>
           </div>
         </dialog>
 
         <dialog id="credits" class="box">
           <div>
-            <h2>Credits</h2>
-            <p>Pixel-handcrafted by <a href="https://github.com/christopherabate">@christopherabate</a></p>
-            <p>Music by <a href="https://yannz.itch.io">YannZ</a></p>
-            <p>WCAG 2.2 AA compliant.</p>
+            <h2 data-i18n="credits"><span data-i18n-content>#</span></h2>
+            <p data-i18n="visual_credits"><span data-i18n-content>#</span></p>
+            <p data-i18n="audio_credits"><span data-i18n-content>#</span></p>
+            <p data-i18n="a11y_statement"><span data-i18n-content>#</span></p>
             <div class="sprite">
               <img class="wind" src="./assets/images/sprites/character.png" alt="character" />
             </div>
             <form method="dialog">
-              <button data-event="screen:standby|screen" type="submit" class="light block"><span aria-hidden="true" class="icon cross"></span>Close</button>
+              <button data-event="screen:standby|screen" type="submit" class="light block" data-i18n="close"><i aria-hidden="true" class="icon cross"></i><span data-i18n-content>#</span></button>
             </form>
           </div>
         </dialog>
@@ -65,7 +67,7 @@
         <audio id="effects" hidden preload="auto"></audio>
       </div>
     </main>
-    
+
     <script type="module" src="./assets/js/scripts.js"></script>
   </body>
 </html>

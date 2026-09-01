@@ -1,10 +1,21 @@
-
+import * as settings from './settings.js';
 import './events.js';
 import './navigation.js';
-import './animation.js';
 import './audio.js';
+import './animation.js';
 import './controls.js';
-import * as settings from './settings.js';
+import './i18n.js';
 
-// apply settings
+// init settings
 settings.init();
+
+// default scene
+document.dispatchEvent(
+  new CustomEvent('scene', {
+    detail: {
+      value: localStorage.getItem('disclaimer')
+        ? 'title'
+        : 'disclaimer'
+    }
+  })
+);
