@@ -231,7 +231,7 @@ dialog::before,
   h1.unwritten::after { animation: blink 1s steps(1, end) infinite; }
   #monitor.glitch:not(:has(.turn-off)), #monitor.glitch dialog { animation: glitch 5s infinite; }
   #monitor.shader dialog::before, #monitor.shader::before { animation: scanlines .2s steps(1, end) infinite; }
-  #screen.turn-on::after { animation: turn-on .8s ease-in-out forwards; }
-  #screen.turn-off::after { animation: turn-off .8s ease-in-out forwards; }
-  #screen.standby::after { animation: standby .4s steps(3, end) forwards; }
+  #screen.turn-on::after { animation: turn-on .9s ease-in-out forwards; }
+  #screen.turn-off::after { animation: turn-off .9s ease-in-out forwards; }
+  #screen.standby::after { animation: standby .6s steps(3, end) forwards; }
 }
