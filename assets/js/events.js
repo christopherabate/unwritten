@@ -55,9 +55,9 @@
      */
     const DEFAULT_EVENT = 'click';
 
-    const selector = [`[data-event][data-on~="${type}"]`, ...(type === DEFAULT_EVENT
-      ? ['[data-event]:not([data-on])']
-      : [])].join(', ');
+    const selector = type === DEFAULT_EVENT
+      ? `[data-event][data-on~="${type}"], [data-event]:not([data-on])`
+      : `[data-event][data-on~="${type}"]`;
 
     const elements = type === 'submit'
       ? event.target.querySelectorAll(selector)
