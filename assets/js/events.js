@@ -49,6 +49,11 @@
     if (!(event.target instanceof Element)) return;
 
     /**
+     * Prevent the native form submission.
+     */
+    if (type === 'submit' && !event.target.hasAttribute('method')) event.preventDefault();
+
+    /**
      * Submit events originate from the form, so declarations
      * can be located anywhere inside it. Other events resolve
      * to the closest matching element.
@@ -60,7 +65,11 @@
       : `[data-event][data-on~="${type}"]`;
 
     const elements = type === 'submit'
-      ? event.target.querySelectorAll(selector)
+      ? [...event.target.querySelectorAll(selector)].filter(element => {
+          return !(element instanceof HTMLInputElement)
+            || element.type !== 'radio'
+            || element.checked;
+        })
       : [event.target.closest(selector)];
 
     for (const element of elements) {

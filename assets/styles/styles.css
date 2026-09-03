@@ -36,6 +36,11 @@
   z-index: 1;
 }
 
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+
 a:not(.button),
 .link {
   color: var(--color, var(--primary));

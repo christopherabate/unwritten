@@ -1,3 +1,16 @@
+.bookmarks {
+  position: absolute;
+  top: calc(28 * var(--pixel));
+}
+
+.bookmarks:nth-child(odd) {
+  left: calc(8 * var(--pixel));
+}
+
+.bookmarks:nth-child(even) {
+  right: calc(8 * var(--pixel));
+}
+
 #disclaimer > div,
 #title > div {
   padding: calc(56 * var(--pixel)) calc(64 * var(--pixel)) 0;
@@ -13,25 +26,33 @@
   background: rgb(0 0 0 / 80%);
 }
 
+#shelves {
+  --shelf-scale: 2;
+  background: url("../images/backgrounds/shelves.png") repeat center / calc(var(--shelf-scale) * 100%);
+}
+
+#shelves > div {
+  padding: calc(22 * var(--pixel)) calc(24 * var(--pixel));
+}
+
+#shelves .cols > * {
+  padding: calc(4 * var(--pixel));
+  margin-bottom: calc(8 * var(--pixel));
+  background-color: hsla(0, 5%, 10%, .5);
+}
+
+#shelves .cols > *:has(:checked) {
+  --color: var(--darkest);
+  color: var(--darkest);
+  background-color: var(--text);
+}
+
 #chapter {
   background: var(--shadow);
 }
 
 #chapter > #cover {
   background: url("../images/backgrounds/book_cover.png") no-repeat center / cover;
-}
-
-#chapter > #cover .bookmarks {
-  position: absolute;
-  top: calc(28 * var(--pixel));
-}
-
-#chapter > #cover .bookmarks:nth-child(odd) {
-  left: calc(8 * var(--pixel));
-}
-
-#chapter > #cover .bookmarks:nth-child(even) {
-  right: calc(8 * var(--pixel));
 }
 
 #chapter > #pages {
@@ -52,26 +73,6 @@
   width: calc(134 * var(--pixel));
   padding-inline: calc(6 * var(--pixel));
   overflow: auto;
-}
-
-#shelves {
-  --shelf-scale: 2;
-  background: url("../images/backgrounds/shelves.png") repeat center / calc(var(--shelf-scale) * 100%);
-}
-
-#shelves > div {
-  padding: calc(28 * var(--pixel)) calc(32 * var(--pixel));
-}
-
-#shelves .cols div {
-  padding: calc(4 * var(--pixel));
-  background-color: hsla(0, 5%, 10%, .5);
-}
-
-#shelves .cols div:has(:hover, :focus, :active) {
-  --color: var(--darkest);
-  color: var(--darkest);
-  background-color: var(--text);
 }
 
 @media (prefers-reduced-motion: no-preference) {

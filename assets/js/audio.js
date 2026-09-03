@@ -49,7 +49,6 @@ document.addEventListener('volume', event => {
 
 // screen effects
 document.addEventListener('effect', async event => {
-  console.log(event);
   try {
     const source = await play('effects', event.detail.value);
   } catch (_) {}

@@ -9,7 +9,8 @@ legend {
 }
 
 /* Inputs */
-input:not([type="checkbox"], [type="radio"], [type="range"]) {
+input:not([type="checkbox"], [type="radio"], [type="range"]),
+select {
   color: color-mix(in srgb, var(--color, var(--darkest)) 80%, var(--darkest));
   background-color: var(--text);
   padding-inline: calc(2 * var(--pixel));
@@ -17,7 +18,8 @@ input:not([type="checkbox"], [type="radio"], [type="range"]) {
   box-shadow: var(--box);
 }
 
-input:is([type="checkbox"], [type="radio"], [type="range"]) {
+input:is([type="checkbox"], [type="radio"], [type="range"]),
+select {
   appearance: none;
   position: relative;
   margin-right: var(--pixel);
@@ -84,7 +86,7 @@ input:is([type="checkbox"], [type="radio"]):checked::before {
   height: var(--pixel);
   color: var(--color, var(--text));
   pointer-events: none;
-  box-shadow: var(--icon);
+  box-shadow: var(--icon, var(--cross));
 }
 
 input:disabled {
@@ -99,9 +101,6 @@ label:not(:disabled) {
   cursor: pointer;
   margin-right: 1rem;
 }
-
-input[type="checkbox"] { --icon: var(--cross); }
-input[type="radio"]    { --icon: var(--arrow-right); }
 
 input[type="checkbox"]:not(:focus-visible)::after {
   content: "";

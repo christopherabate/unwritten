@@ -34,6 +34,8 @@ document.addEventListener('screen', event => {
   const screen = document.getElementById('screen');
   if (!screen) return;
 
+  console.log(event.detail);
+
   Object.entries(event.detail)
     .filter(([key]) => !INTERNAL.includes(key))
     .forEach(([key, value]) => screen.style.setProperty(`--${key}`, value));
