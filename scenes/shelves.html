@@ -1,21 +1,21 @@
 <div id="shelves">
   <div>
     <ul class="unstyled">
-      <li><button type="button" class="danger" data-event="screen:turn-off|scene:title|screen:turn-on" aria-label="Title"><i aria-hidden="true" class="icon home"></i></button></li>
+      <li><button type="button" class="danger" data-event="effect:screen_off|screen:turn-off|scene:title|effect:screen_on|screen:turn-on" aria-label="Title"><i aria-hidden="true" class="icon home"></i></button></li>
       <li><button type="button" class="muted" data-event="dialog:settings" aria-label="Settings"><i aria-hidden="true" class="icon wrench"></i></button></li>
     </ul>
     <h2 class="align-center" data-i18n="pick_shelf"><span data-i18n-content>#</span></h2>
     <div class="cols">
-      <div class="box">
-        <button type="button" data-event="screen:value=shelf,shelf-x=1,shelf-y=1|screen:turn-off|scene:chapter|screen:turn-on" class="stretched-link">Horror</button>
+      <div class="box" data-on="mouseover focusin" data-event="effect:card_select">
+        <button type="button" data-event="screen:value=shelf,shelf-x=1,shelf-y=1|effect:screen_off|screen:turn-off|scene:chapter|effect:screen_on|screen:turn-on" class="stretched-link">Horror</button>
         <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit</p>
       </div>
-      <div class="box">
-        <button type="button" data-event="screen:value=shelf,shelf-x=1,shelf-y=-1|screen:turn-off|scene:chapter|screen:turn-on" class="stretched-link">Fantasy</button>
+      <div class="box" data-on="mouseover focusin" data-event="effect:card_select">
+        <button type="button" data-event="screen:value=shelf,shelf-x=1,shelf-y=-1|effect:screen_off|screen:turn-off|scene:chapter|effect:screen_on|screen:turn-on" class="stretched-link">Fantasy</button>
         <p>Aenean commodo ligula eget dolor. Aenean massa</p>
       </div>
-      <div class="box">
-        <button type="button" data-event="screen:value=shelf,shelf-x=-1,shelf-y=-1|screen:turn-off|scene:chapter|screen:turn-on" class="stretched-link">Science fiction</button>
+      <div class="box" data-on="mouseover focusin" data-event="effect:card_select">
+        <button type="button" data-event="screen:value=shelf,shelf-x=-1,shelf-y=-1|effect:screen_off|screen:turn-off|scene:chapter|effect:screen_on|screen:turn-on" class="stretched-link">Science fiction</button>
         <p>Cum sociis natoque penatibus et magnis dis parturient montes</p>
       </div>
     </div>

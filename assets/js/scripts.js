@@ -20,7 +20,7 @@ document.dispatchEvent(
   })
 );
 
-// music autoplay
+// music autoplays
 document.addEventListener('pointerdown', async () => {
   try {
     await audio.play('music', 'title', true);

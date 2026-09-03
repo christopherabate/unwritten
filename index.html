@@ -43,7 +43,7 @@
                 <label data-i18n="yes"><input data-on="change" data-event="monitor:glitch" class="tick" type="radio" name="glitch" value="on"> <span data-i18n-content>#</span></label>
                 <label data-i18n="no"><input data-on="change" data-event="monitor:glitch" class="cross" type="radio" name="glitch" value="off"> <span data-i18n-content>#</span></label>
               </fieldset>
-              <button data-event="screen:standby" type="submit" class="light block" data-i18n="close"><i aria-hidden="true" class="icon cross"></i><span data-i18n-content>#</span></button>
+              <button data-event="effect:screen_static|screen:standby" type="submit" class="light block" data-i18n="close"><i aria-hidden="true" class="icon cross"></i><span data-i18n-content>#</span></button>
             </form>
           </div>
         </dialog>
@@ -58,14 +58,10 @@
               <img class="wind" src="./assets/images/sprites/character.png" alt="character" />
             </div>
             <form method="dialog">
-              <button data-event="screen:standby" type="submit" class="light block" data-i18n="close"><i aria-hidden="true" class="icon cross"></i><span data-i18n-content>#</span></button>
+              <button data-event="effect:screen_static|screen:standby" type="submit" class="light block" data-i18n="close"><i aria-hidden="true" class="icon cross"></i><span data-i18n-content>#</span></button>
             </form>
           </div>
         </dialog>
-
-        <audio id="music" src="./assets/audio/music/title.ogg" loop hidden preload="auto"></audio>
-        <audio id="effects" hidden preload="auto"></audio>
-        <audio src="./assets/audio/effects/standby.wav" hidden preload="auto"></audio>
       </div>
     </main>
 

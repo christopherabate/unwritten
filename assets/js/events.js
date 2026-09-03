@@ -36,7 +36,9 @@
   'click',
   'change',
   'input',
-  'submit'
+  'submit',
+  'mouseover',
+  'focusin'
 ].forEach(type => {
 
   document.addEventListener(type, async event => {
@@ -51,9 +53,15 @@
      * can be located anywhere inside it. Other events resolve
      * to the closest matching element.
      */
+    const DEFAULT_EVENT = 'click';
+
+    const selector = [`[data-event][data-on~="${type}"]`, ...(type === DEFAULT_EVENT
+      ? ['[data-event]:not([data-on])']
+      : [])].join(', ');
+
     const elements = type === 'submit'
-      ? event.target.querySelectorAll(`[data-event][data-on~="${type}"]`)
-      : [event.target.closest(`[data-event]:not([data-on]), [data-event][data-on~="${type}"]`)];
+      ? event.target.querySelectorAll(selector)
+      : [event.target.closest(selector)];
 
     for (const element of elements) {
 
