@@ -176,7 +176,9 @@ body {
 }
 
 dialog::before,
+dialog::after,
 #monitor::before,
+#monitor::after,
 #screen::after {
   content: "";
   position: absolute;
@@ -205,8 +207,8 @@ dialog::before,
     /* yellow */ radial-gradient(circle at 85% 100%, rgb(255 255 0 / .05) 0%, transparent 50%);
 }
 
-#monitor.shader dialog::before,
-#monitor.shader::before {
+#monitor.shader dialog::after,
+#monitor.shader::after {
   background:
     /* pixels */ url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg fill='black' fill-opacity='.2'%3E%3Crect width='24' height='2'/%3E%3Crect y='10' width='24' height='4'/%3E%3Crect y='22' width='24' height='2'/%3E%3C/g%3E%3Cg fill-opacity='.1'%3E%3Cg fill='red'%3E%3Crect x='1' y='2' width='4' height='8'/%3E%3Crect x='13' y='2' width='4' height='8'/%3E%3Crect x='6' y='14' width='4' height='8'/%3E%3Crect x='18' y='14' width='4' height='8'/%3E%3C/g%3E%3Cg fill='green'%3E%3Crect x='5' y='2' width='4' height='8'/%3E%3Crect x='17' y='2' width='4' height='8'/%3E%3Crect y='14' width='2' height='8'/%3E%3Crect x='10' y='14' width='4' height='8'/%3E%3Crect x='22' y='14' width='2' height='8'/%3E%3C/g%3E%3Cg fill='blue'%3E%3Crect y='2' width='1' height='8'/%3E%3Crect x='9' y='2' width='4' height='8'/%3E%3Crect x='21' y='2' width='3' height='8'/%3E%3Crect x='2' y='14' width='4' height='8'/%3E%3Crect x='14' y='14' width='4' height='8'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") 0 0 / calc(2 * var(--pixel)) calc(2 * var(--pixel)),
 }
