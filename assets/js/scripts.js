@@ -9,14 +9,6 @@ import './i18n.js';
 // init settings
 settings.init();
 
-// activate submit buttons
-document.addEventListener('change', ({ target }) => {
-  if (!target.form) return;
-  const submit = target.form.querySelector('button[type="submit"]');
-  if (!submit) return;
-  submit.disabled = !target.form.checkValidity();
-});
-
 // default scene
 document.dispatchEvent(
   new CustomEvent('scene', {
