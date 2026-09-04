@@ -1,5 +1,5 @@
 import * as settings from './settings.js';
-import * as audio from './audio.js';
+import './audio.js';
 import './events.js';
 import './navigation.js';
 import './animation.js';
@@ -19,10 +19,3 @@ document.dispatchEvent(
     }
   })
 );
-
-// music autoplays
-document.addEventListener('pointerdown', async () => {
-  try {
-    await audio.play('music', 'title', true);
-  } catch (_) {}
-}, { once: true });

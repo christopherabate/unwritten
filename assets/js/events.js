@@ -34,6 +34,7 @@
 
 [
   'click',
+  'load',
   'change',
   'input',
   'submit',

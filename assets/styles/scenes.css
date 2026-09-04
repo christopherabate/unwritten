@@ -8,7 +8,7 @@
 }
 
 .bookmarks:nth-child(even) {
-  right: calc(8 * var(--pixel));
+  left: calc(297 * var(--pixel));
 }
 
 #disclaimer > div,

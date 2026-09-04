@@ -13,6 +13,10 @@ document.addEventListener('scene', event => {
     if (!response.ok) return;
 
     scene.innerHTML = await response.text();
+
+    scene.querySelectorAll('[data-on~="load"]').forEach(element => {
+      element.dispatchEvent(new Event('load', { bubbles: true }));
+    });
   })();
 });
 

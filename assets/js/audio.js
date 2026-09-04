@@ -1,12 +1,15 @@
 import * as settings from './settings.js';
 
+const CROSSFADE = 1;
+
 const audio = {
   context: new AudioContext(),
   buffers: {},
-  gains: {}
+  gains: {},
+  sources: {}
 };
 
-export const play = async (type, name, loop = false) => {
+const play = async (type, name, loop = false, sync = true) => {
   if (!audio.buffers[type]) audio.buffers[type] = {};
 
   if (!audio.buffers[type][name]) {
@@ -16,17 +19,63 @@ export const play = async (type, name, loop = false) => {
       if (!response.ok) return;
 
       audio.buffers[type][name] = await audio.context.decodeAudioData(await response.arrayBuffer());
-    } catch (_) { return; }
+    } catch (_) {
+      return;
+    }
   }
 
   await audio.context.resume();
 
+  const time = audio.context.currentTime;
+  const masterGain = audio.gains[type];
+  const current = audio.sources[type];
+
+  let offset = 0;
+
+  if (loop && current) {
+    if (sync) {
+      offset =
+        (time - current.startedAt) %
+        current.source.buffer.duration;
+    }
+
+    // Stoppe le morceau qui était déjà en fade-out
+    current.fading?.source.stop();
+
+    // Interrompt proprement son fade éventuel
+    current.gain.gain.cancelScheduledValues(time);
+    current.gain.gain.setValueAtTime(current.gain.gain.value, time);
+    current.gain.gain.linearRampToValueAtTime(0, time + CROSSFADE);
+
+    current.source.stop(time + CROSSFADE);
+  }
+
   const source = audio.context.createBufferSource();
+  const gain = audio.context.createGain();
 
   source.buffer = audio.buffers[type][name];
   source.loop = loop;
-  source.connect(audio.gains[type] ?? audio.context.destination);
-  source.start();
+
+  source.connect(gain);
+  gain.connect(masterGain ?? audio.context.destination);
+
+  if (loop) {
+    offset %= source.buffer.duration;
+
+    gain.gain.setValueAtTime(0, time);
+    gain.gain.linearRampToValueAtTime(1, time + CROSSFADE);
+  }
+
+  source.start(0, offset);
+
+  if (loop) {
+    audio.sources[type] = {
+      source,
+      gain,
+      startedAt: time - offset,
+      fading: current
+    };
+  }
 
   return source;
 };
@@ -50,6 +99,13 @@ document.addEventListener('volume', event => {
 // screen effects
 document.addEventListener('effect', async event => {
   try {
-    const source = await play('effects', event.detail.value);
+    await play('effects', event.detail.value);
+  } catch (_) {}
+});
+
+// play music
+document.addEventListener('music', async event => {
+  try {
+    await play('music', event.detail.value, true, true);
   } catch (_) {}
 });
