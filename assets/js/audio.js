@@ -80,6 +80,13 @@ const play = async (type, name, loop = false, sync = true) => {
   return source;
 };
 
+// autoplay on first interaction
+['pointerdown', 'keydown'].forEach(type => {
+  document.addEventListener(type, () => {
+    audio.context.resume();
+  }, { once: true });
+});
+
 // set volume
 document.addEventListener('volume', event => {
   if (!event.detail.value) return;
