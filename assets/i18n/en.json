@@ -20,5 +20,11 @@
   "continue": "Continue",
   "new_game": "New game",
   "disclaimer": "Disclaimer",
-  "pick_shelf": "Pick a shelf:"
+  "pick_shelf": "Pick a shelf:",
+  "horror": "Horror",
+  "fantasy": "Fantasy",
+  "scifi": "Science Fiction",
+  "romance": "Romance",
+  "mystery": "Mystery",
+  "adventure": "Adventure"
 }
