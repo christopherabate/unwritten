@@ -26,5 +26,7 @@
   "sci-fi": "Science-fiction",
   "romance": "Romance",
   "mystery": "Policier",
-  "adventure": "Aventure"
+  "adventure": "Aventure",
+  "book": "Livre",
+  "chapter": "Chapitre"
 }
