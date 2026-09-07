@@ -20,5 +20,12 @@
   "continue": "Continuer",
   "new_game": "Nouvelle partie",
   "disclaimer": "Informations",
-  "pick_shelf": "Choisis une section :"
+  "pick_shelf": "Choisis une section :",
+  "horror": "Horreur",
+  "fantasy": "Fantasy",
+  "scifi": "Science-fiction",
+  "romance": "Romance",
+  "mystery": "Policier",
+  "adventure": "Aventure"
+}
 }
