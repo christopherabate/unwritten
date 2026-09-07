@@ -27,4 +27,6 @@
   "romance": "Romance",
   "mystery": "Mystery",
   "adventure": "Adventure"
+  "book": "Book",
+  "chapter": "Chapter"
 }
